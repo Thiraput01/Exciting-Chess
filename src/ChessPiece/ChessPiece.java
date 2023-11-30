@@ -1,5 +1,7 @@
 package ChessPiece;
 
+import ChessBoard.Board;
+import ChessBoard.Square;
 import javafx.event.EventHandler;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -9,10 +11,9 @@ import java.util.ArrayList;
 public abstract class ChessPiece extends ImageView implements Movable {
     private int posX;
     private int posY;
-    private int weight;
+    private int rate;
     private String pieceUrl;
     private boolean whiteTeam; //white is true black is false
-    private ArrayList<ChessPosition> possibleMoves;
 
     public ChessPiece(int x, int y, boolean t) {
         setTeam(t);
@@ -31,12 +32,12 @@ public abstract class ChessPiece extends ImageView implements Movable {
         this.whiteTeam = team;
     }
 
-    public int getWeight() {
-        return weight;
+    public int getRate() {
+        return rate;
     }
 
-    public void setWeight(int weight) {
-        this.weight = weight;
+    public void setRate(int rate) {
+        this.rate = rate;
     }
 
     public String getPieceUrl() {
@@ -108,5 +109,10 @@ public abstract class ChessPiece extends ImageView implements Movable {
     }
 
     public abstract void getAllPossibleMoves();
+
+
+    public abstract void capture(int x, int y);
+
+    public abstract void handleCapture(Square destination, int toX, int toY);
 }
 

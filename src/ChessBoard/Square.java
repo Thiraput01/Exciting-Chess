@@ -1,5 +1,6 @@
 package ChessBoard;
 
+import ChessPiece.ChessPiece;
 import javafx.scene.layout.StackPane;
 
 import javax.swing.text.Position;
@@ -38,13 +39,32 @@ public class Square extends StackPane {
         this.y = this.y * -1;
     }
 
-    public void normalizedPosition() {
-        if (this.x > 0) this.x = x % 8;
-        if (this.y > 0) this.y = y % 8;
-        if (this.x < 0) this.x += 8;
-        if (this.y < 0) this.y += 8;
 
+    public void highlightRed() {
+        setStyle("-fx-background-color: red;");
     }
 
+    public void highlightGreen() {
+        setStyle("-fx-background-color: green;");
+    }
 
+    public void unhighlight() {
+        setStyle(""); // Remove highlighting
+    }
+
+    public boolean hasPiece() {
+        return !getChildren().isEmpty();
+    }
+
+    public ChessPiece getPiece() {
+        if (hasPiece()) {
+            return (ChessPiece) getChildren().get(0);
+        } else {
+            return null;
+        }
+    }
+
+    public void removePiece() {
+        getChildren().clear();
+    }
 }

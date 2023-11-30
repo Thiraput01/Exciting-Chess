@@ -4,19 +4,22 @@ import ChessPiece.ChessPiece;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
-import java.nio.channels.Pipe;
 import java.util.ArrayList;
 
 public class Board {
-    GridPane chessBoard;
 
-    public ArrayList<Square> squares = new ArrayList<>();
+    private static Board instance;
+    private GridPane chessBoard;
+    private ArrayList<Square> squares;
 
-    public Board(GridPane chessBoard) {
-        this.chessBoard = chessBoard;
+    private Board() {
+        initializeBoard();
     }
 
-    private void InitializeBoard(GridPane chessBoard) {
+    private void initializeBoard() {
+        chessBoard = new GridPane();
+        squares = new ArrayList<>();
+
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 Square square = new Square(i, j);
@@ -29,7 +32,18 @@ public class Board {
         }
     }
 
-    private void addPiece(Square square, ChessPiece chessPiece){
-        square.getChildren().add(chessPiece);
+    public static Board getInstance() {
+        if (instance == null) {
+            instance = new Board();
+        }
+        return instance;
+    }
+
+    public Square getSquare(int x, int y) {
+        return squares.get(x + y * 8);
+    }
+
+    public boolean isValidPosition(int x, int y) {
+        return x >= 0 && x < 8 && y >= 0 && y < 8;
     }
 }

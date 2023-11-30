@@ -31,14 +31,6 @@ public class ChessPosition {
         return other.getX() == getX() && other.getY() == getY();
     }
 
-    public ChessPosition addPositionValue(ChessPosition addedPosition) {
-        int resultX = addedPosition.getX() + this.getX();
-        int resultY = addedPosition.getY() + this.getY();
-        ChessPosition result = new ChessPosition(resultX, resultY);
-        result.normalizedPosition();
-        return result;
-    }
-
     public void reverse() {
         this.x = this.x * -1;
         this.y = this.y * -1;
