@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public abstract class ChessPiece extends ImageView implements Movable {
     private int posX;
     private int posY;
-    private int rate;
+    private double rate;
     private String pieceUrl;
     private boolean whiteTeam; //white is true black is false
 
@@ -32,7 +32,7 @@ public abstract class ChessPiece extends ImageView implements Movable {
         this.whiteTeam = team;
     }
 
-    public int getRate() {
+    public double getRate() {
         return rate;
     }
 

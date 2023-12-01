@@ -1,7 +1,9 @@
 package ChessPiece;
 
 public interface Movable {
-    boolean isValidMove(int toX, int toY);
+    public boolean isValidMove(int toX, int toY);
 
-    public void move(int x, int y);
+    public void move(int toX, int toY);
+
+    public void attack(int toX,int toY);
 }
