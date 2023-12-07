@@ -13,6 +13,8 @@ import java.util.ArrayList;
 public class GameInstance {
     private ArrayList<ArrayList<ChessPiece>> board;
     private boolean currentPlayer;
+    private int time_left_white;
+    private int time_left_black;
     private static GameInstance instance=null;
     public GameInstance(){
         board=new ArrayList<>();
@@ -23,6 +25,9 @@ public class GameInstance {
             x.set(6,new Pawn(i,6,false));
             i++;
         } // set all pawn
+
+        setTime_left_black(300000);
+        setTime_left_white(300000);
 
         ArrayList<ChessPiece> tmp=board.get(0); //column 0
         tmp.set(0,new Rook(0,0,true));
@@ -79,5 +84,23 @@ public class GameInstance {
         ArrayList<ChessPiece> tmp=board.get(x);
         tmp.set(y,chessPiece);
         board.set(x,tmp);
+    }
+
+    public String getTime_left_white() {
+        return time_left_white/60+" : "+time_left_white%60;
+    }
+
+    public String getTime_left_black() {
+        return time_left_black/60+" : "+time_left_black%60;
+    }
+
+    public void setTime_left_white(int time_left_white) {
+        if (time_left_white<0) time_left_white=0;
+        this.time_left_white = time_left_white;
+    }
+
+    public void setTime_left_black(int time_left_black) {
+        if (time_left_black<0) time_left_black=0;
+        this.time_left_black = time_left_black;
     }
 }
