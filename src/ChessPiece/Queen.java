@@ -11,10 +11,11 @@ public class Queen extends ChessPiece implements Movable{
         setPieceUrl(getImageURL(isWhite));
         possibleMoves=new ArrayList<>();
     }
-    //TODO to be edited
+
     public boolean isValidMove(int toX, int toY){
         if (!GameUtil.inRangeOfBoard(toX,toY)) return false;
-        return Math.abs(toX-getPosX())==1 || Math.abs(toY-getPosY())==1;
+        if (toX==getPosX() && toY==getPosY()) return false;
+        return Math.abs(toX-getPosX())==1 || Math.abs(toY-getPosY())==1 || toX==getPosX() || toY==getPosY() || Math.abs(toX-getPosX())==Math.abs(toY-getPosY());
     }
     private String getImageURL(boolean isWhite) {
         return isWhite ? "wQueen.png" : "bQueen.png";
