@@ -50,14 +50,14 @@ public abstract class ChessPiece implements Movable {
         this.pieceUrl = pieceUrl;
     }
 
-    private void addEventHandler(){
+    /*private void addEventHandler(){
         setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 setCurrentAllPossibleMoves();
             }
         });
-    }
+    }*/
 
     public void setPosX(int posX) {
         this.posX = posX;

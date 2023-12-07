@@ -28,11 +28,14 @@ public class Knight extends ChessPiece implements Movable {
         return isWhite ? "wKnight.png" : "bKnight.png";
     }
 
-    public void setCurrentAllPossibleMoves(){
+    public void setCurrentAllPossibleMoves() {
         possibleMoves.clear();
-        for(int i=0;i<8;i++){
-            for (int e=0;e<8;e++){
-                if (isValidMove(i,e) && (GameLogic.getInstance().getChessPieceAt(i,e)==null || (GameLogic.getInstance().getChessPieceAt(i,e)!=null && GameLogic.getInstance().getChessPieceAt(i,e).isWhite()!=isWhite()))) possibleMoves.add(new ChessPosition(i,e));
+        for (int i = 0; i < 8; i++) {
+            for (int e = 0; e < 8; e++) {
+                if (isValidMove(i, e) && (GameLogic.getInstance().getChessPieceAt(i, e) == null
+                        || (GameLogic.getInstance().getChessPieceAt(i, e) != null
+                        && GameLogic.getInstance().getChessPieceAt(i, e).isWhite() != isWhite())))
+                    possibleMoves.add(new ChessPosition(i, e));
             }
         }
     }
