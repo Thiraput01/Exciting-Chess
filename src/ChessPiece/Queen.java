@@ -11,7 +11,7 @@ public class Queen extends ChessPiece implements Movable{
         setPieceUrl(getImageURL(isWhite));
         possibleMoves=new ArrayList<>();
     }
-
+    //TODO to be edited
     public boolean isValidMove(int toX, int toY){
         if (!GameUtil.inRangeOfBoard(toX,toY)) return false;
         return Math.abs(toX-getPosX())==1 || Math.abs(toY-getPosY())==1;

@@ -23,6 +23,7 @@ public class GameInstance {
             x.set(6,new Pawn(i,6,false));
             i++;
         } // set all pawn
+
         ArrayList<ChessPiece> tmp=board.get(0); //column 0
         tmp.set(0,new Rook(0,0,true));
         tmp.set(7,new Rook(0,7,false));

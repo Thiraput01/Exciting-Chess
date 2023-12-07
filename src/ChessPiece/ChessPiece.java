@@ -9,21 +9,21 @@ import javafx.scene.input.MouseEvent;
 
 import java.util.ArrayList;
 
-public abstract class ChessPiece extends ImageView implements Movable {
+public abstract class ChessPiece implements Movable {
     private int posX;
     private int posY;
     private double rate;
     private String pieceUrl;
     private boolean whiteTeam; //white is true black is false
     protected ArrayList<ChessPosition> possibleMoves;
-    public Image icon;
+    //public Image icon; //to be removed
 
     public ChessPiece(int x, int y, boolean t) {
         setTeam(t);
         posX = x;
         posY = y;
-        addEventHandler();
-        icon=new Image(getPieceUrl());
+        //addEventHandler();
+        //icon=new Image(getPieceUrl());
     }
 
 

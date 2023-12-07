@@ -14,7 +14,7 @@ public class Bishop extends ChessPiece implements Movable{
 
     public boolean isValidMove(int toX, int toY){
         if (!GameUtil.inRangeOfBoard(toX,toY)) return false;
-        return Math.abs(toX-getPosX())==Math.abs(toY-getPosY());
+        return Math.abs(toX-getPosX())!=0 && Math.abs(toX-getPosX())==Math.abs(toY-getPosY());
     }
     private String getImageURL(boolean isWhite) {
         return isWhite ? "wBishop.png" : "bBishop.png";
