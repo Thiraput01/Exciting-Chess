@@ -114,7 +114,7 @@ public abstract class ChessPiece extends ImageView implements Movable {
 
     public abstract void setCurrentAllPossibleMoves();
 
-    public void move(int x, int y){
+    public boolean move(int x, int y){
         if (isValidMove(x,y)){
             if (GameInstance.getInstance().getChessPieceAt(x,y)==null){
                 setPosY(y);
@@ -125,14 +125,18 @@ public abstract class ChessPiece extends ImageView implements Movable {
                 if (GameUtil.attack(this,GameInstance.getInstance().getChessPieceAt(x,y),x,y)){ //successfully attacked
                     setPosY(y);
                     setPosX(x);
+                    System.out.println(this +"killed an enemy at "+getPosX()+" "+getPosY());
                 }
                 else{ //failed to attack, killed
                     GameInstance.getInstance().setChessPieceAt(this.getPosX(),this.getPosY(),null);
                     setPosX(-1);
                     setPosY(-1);
+                    System.out.println(this+"failed to kill, got revenged to death.");
                 }
             }
+            return true; //successfully moved, this can move with or w/o attack or can be revenged to death
         }
+        return false; //invalidMove
     }
 }
 
