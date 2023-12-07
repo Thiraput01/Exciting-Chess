@@ -24,6 +24,7 @@ public class Pawn extends ChessPiece implements Movable{
 
     public void setCurrentAllPossibleMoves(){
         possibleMoves.clear();
+<<<<<<< HEAD
         int direction= isWhite()? 1:-1;
         if (getPosY()+direction<8 && getPosY()+direction>=0) possibleMoves.add(new ChessPosition(getPosX(),getPosY()+direction));
         // case: attacking diagonally
@@ -31,5 +32,12 @@ public class Pawn extends ChessPiece implements Movable{
         ChessPiece target2= GameLogic.getInstance().getChessPieceAt(getPosX()+1,getPosY()+direction);
         if (target1!=null && target1.isWhite()!=isWhite()) possibleMoves.add(new ChessPosition(getPosX()-1,getPosY()+direction));
         if (target2!=null && target2.isWhite()!=isWhite()) possibleMoves.add(new ChessPosition(getPosX()+1,getPosY()+direction));
+=======
+        for(int i=0;i<8;i++){
+            for (int e=0;e<8;e++){
+                if (isValidMove(i,e) && (GameInstance.getInstance().getChessPieceAt(i,e)==null || (GameInstance.getInstance().getChessPieceAt(i,e)!=null && GameInstance.getInstance().getChessPieceAt(i,e).isWhite()!=isWhite()))) possibleMoves.add(new ChessPosition(i,e));
+            }
+        }
+>>>>>>> 57c3427eccd95cf84ea6484497b57b974a0361f8
     }
 }

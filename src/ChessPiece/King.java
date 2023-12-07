@@ -1,5 +1,7 @@
 package ChessPiece;
 
+import GameLogic.GameInstance;
+
 import java.util.ArrayList;
 
 public class King extends ChessPiece implements Movable {
@@ -75,11 +77,11 @@ public class King extends ChessPiece implements Movable {
     }*/
 
     @Override
-    public void setCurrentAllPossibleMoves() {
+    public void setCurrentAllPossibleMoves(){
         possibleMoves.clear();
-        for (int i=0;i<8;i++){
+        for(int i=0;i<8;i++){
             for (int e=0;e<8;e++){
-                if (isValidMove(i,e)) possibleMoves.add(new ChessPosition(i,e));
+                if (isValidMove(i,e) && (GameInstance.getInstance().getChessPieceAt(i,e)==null || (GameInstance.getInstance().getChessPieceAt(i,e)!=null && GameInstance.getInstance().getChessPieceAt(i,e).isWhite()!=isWhite()))) possibleMoves.add(new ChessPosition(i,e));
             }
         }
     }

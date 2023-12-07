@@ -1,5 +1,6 @@
 package ChessPiece;
 
+import GameLogic.GameInstance;
 import GameLogic.GameUtil;
 
 import java.util.ArrayList;
@@ -27,19 +28,12 @@ public class Knight extends ChessPiece implements Movable {
         return isWhite ? "wKnight.png" : "bKnight.png";
     }
 
-    public void setCurrentAllPossibleMoves() {
-        possibleMoves.clear(); // Clear the existing list
-
-        int currentX = getPosX();
-        int currentY = getPosY();
-        if (currentX + 1 < 8 && currentY + 2 < 8) possibleMoves.add(new ChessPosition(currentX + 1, currentY + 2));
-        if (currentX + 1 < 8 && currentY - 2 >= 0) possibleMoves.add(new ChessPosition(currentX + 1, currentY - 2));
-        if (currentX - 1 >= 0 && currentY + 2 < 8) possibleMoves.add(new ChessPosition(currentX - 1, currentY + 2));
-        if (currentX - 1 >= 0 && currentY - 2 >= 0) possibleMoves.add(new ChessPosition(currentX - 1, currentY - 2));
-
-        if (currentY + 1 < 8 && currentX + 2 < 8) possibleMoves.add(new ChessPosition(currentX + 2, currentY + 1));
-        if (currentY - 1 < 8 && currentX + 2 >= 0) possibleMoves.add(new ChessPosition(currentX + 2, currentY - 1));
-        if (currentY + 1 >= 0 && currentX - 2 < 8) possibleMoves.add(new ChessPosition(currentX - 2, currentY + 1));
-        if (currentY - 1 >= 0 && currentX - 2 >= 0) possibleMoves.add(new ChessPosition(currentX - 2, currentY - 1));
+    public void setCurrentAllPossibleMoves(){
+        possibleMoves.clear();
+        for(int i=0;i<8;i++){
+            for (int e=0;e<8;e++){
+                if (isValidMove(i,e) && (GameInstance.getInstance().getChessPieceAt(i,e)==null || (GameInstance.getInstance().getChessPieceAt(i,e)!=null && GameInstance.getInstance().getChessPieceAt(i,e).isWhite()!=isWhite()))) possibleMoves.add(new ChessPosition(i,e));
+            }
+        }
     }
 }
