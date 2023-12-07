@@ -1,7 +1,7 @@
 package Drawing;
 
 
-import GameLogic.GameInstance;
+import GameLogic.GameLogic;
 import Main.Main;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
@@ -135,7 +135,13 @@ public class StartScreen extends BorderPane {
         AnimationTimer animationTimer = new AnimationTimer() {
             @Override
             public void handle(long l) {
-                //TODO G
+                GameLogic.getInstance().setCurrent_game_time(l);
+                RenderableHolder.getInstance().update();
+                if(GameLogic.getInstance().isGameEnd()){
+                    //TODO set description to "Player.. win"
+                    //TODO set Mainboard disable to false
+                    stop();
+                }
             }
         };
         animationTimer.start();
