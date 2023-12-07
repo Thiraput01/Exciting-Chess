@@ -1,5 +1,7 @@
 package ChessPiece;
 
+import GameLogic.GameInstance;
+import GameLogic.GameUtil;
 import javafx.event.EventHandler;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -112,5 +114,25 @@ public abstract class ChessPiece extends ImageView implements Movable {
 
     public abstract void setCurrentAllPossibleMoves();
 
+    public void move(int x, int y){
+        if (isValidMove(x,y)){
+            if (GameInstance.getInstance().getChessPieceAt(x,y)==null){
+                setPosY(y);
+                setPosX(x);
+            }
+            else{
+                //attack
+                if (GameUtil.attack(this,GameInstance.getInstance().getChessPieceAt(x,y),x,y)){ //successfully attacked
+                    setPosY(y);
+                    setPosX(x);
+                }
+                else{ //failed to attack, killed
+                    GameInstance.getInstance().setChessPieceAt(this.getPosX(),this.getPosY(),null);
+                    setPosX(-1);
+                    setPosY(-1);
+                }
+            }
+        }
+    }
 }
 

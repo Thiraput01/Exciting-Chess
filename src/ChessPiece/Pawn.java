@@ -1,7 +1,6 @@
 package ChessPiece;
 
 import GameLogic.GameInstance;
-import GameLogic.GameUtil;
 
 import java.util.ArrayList;
 
@@ -19,18 +18,6 @@ public class Pawn extends ChessPiece implements Movable{
         int direction= isWhite()? 1:-1;
         if ((toX==getPosX()+1 || toX==getPosX()-1) && toY==getPosY()+direction && GameInstance.getInstance().getChessPieceAt(toX,toY)!=null && GameInstance.getInstance().getChessPieceAt(toX,toY).isWhite()!=isWhite()) return true; // attacking diagonally upward
         return toX==getPosX() && toY==getPosX()+direction;
-    }
-
-    public void move(int x, int y){
-        if (isValidMove(x,y)){
-            if (GameInstance.getInstance().getChessPieceAt(x,y)==null){
-                setPosY(y);
-                setPosX(x);
-            }
-            else{
-                //attack
-            }
-        }
     }
     private String getImageURL(boolean isWhite) {
         return isWhite ? "wPawn.png" : "bPawn.png";
