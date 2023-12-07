@@ -5,7 +5,6 @@ import GameLogic.GameInstance;
 import java.util.ArrayList;
 
 public class Pawn extends ChessPiece implements Movable{
-    private ArrayList<ChessPosition> possibleMoves;
     public Pawn(int x,int y,boolean isWhite){
         super(x,y,isWhite);
         setRate(0.5);

@@ -4,26 +4,27 @@ import GameLogic.GameUtil;
 
 import java.util.ArrayList;
 
-public class Rook extends ChessPiece implements Movable{
-    public Rook(int x,int y,boolean isWhite){
+public class Bishop extends ChessPiece implements Movable{
+    public Bishop(int x,int y,boolean isWhite){
         super(x,y,isWhite);
-        setRate(0.8);
+        setRate(0.75);
         setPieceUrl(getImageURL(isWhite));
         possibleMoves=new ArrayList<>();
     }
 
     public boolean isValidMove(int toX, int toY){
         if (!GameUtil.inRangeOfBoard(toX,toY)) return false;
-        return (!(toX==getPosX()&&toY==getPosY()))&&(toX==getPosX() || toY==getPosY());
+        return Math.abs(toX-getPosX())==Math.abs(toY-getPosY());
     }
     private String getImageURL(boolean isWhite) {
-        return isWhite ? "wRook.png" : "bRook.png";
+        return isWhite ? "wBishop.png" : "bBishop.png";
     }
     public void setCurrentAllPossibleMoves(){
         possibleMoves.clear();
         for(int i=0;i<8;i++){
-            if (i!=getPosX()) possibleMoves.add(new ChessPosition(i,getPosY()));
-            if (i!=getPosY()) possibleMoves.add(new ChessPosition(getPosX(),i));
+            for (int e=0;e<8;e++){
+                if (isValidMove(i,e)) possibleMoves.add(new ChessPosition(i,e));
+            }
         }
     }
 }
