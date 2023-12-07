@@ -1,6 +1,5 @@
 package ChessPiece;
 
-import GameLogic.GameInstance;
 import GameLogic.GameLogic;
 import GameLogic.GameUtil;
 
