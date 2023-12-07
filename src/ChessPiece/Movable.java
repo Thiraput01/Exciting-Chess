@@ -5,5 +5,4 @@ public interface Movable {
 
     public void move(int toX, int toY);
 
-    public void attack(int toX,int toY);
 }

@@ -24,11 +24,19 @@ public class Knight extends ChessPiece implements Movable{
             }
             else{
                 //attack
+                if (GameUtil.attack(this,GameInstance.getInstance().getChessPieceAt(x,y),x,y)){ //successfully attacked
+                    setPosY(y);
+                    setPosX(x);
+                }
+                else{ //failed to attack, killed
+                    setPosX(-1);
+                    setPosY(-1);
+                    GameInstance.getInstance().setChessPieceAt(this.getPosX(),this.getPosY(),null);
+                }
             }
         }
     }
-    public void attack(int x,int y){
-        if (!isValidMove(x,y)) return;
-
+    private String getImageURL(boolean isWhite) {
+        return isWhite ? "wKnight.png" : "bKnight.png";
     }
 }

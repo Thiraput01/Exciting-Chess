@@ -114,5 +114,7 @@ public abstract class ChessPiece extends ImageView implements Movable {
     public abstract void capture(int x, int y);
 
     public abstract void handleCapture(Square destination, int toX, int toY);
+
+    public void attack()
 }
 

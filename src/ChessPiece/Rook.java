@@ -22,8 +22,7 @@ public class Rook extends ChessPiece implements Movable{
             }
         }
     }
-    public void attack(int x,int y){
-        if (!isValidMove(x,y)) return;
-
+    private String getImageURL(boolean isWhite) {
+        return isWhite ? "wRook.png" : "bRook.png";
     }
 }

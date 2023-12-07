@@ -21,9 +21,7 @@ public class Pawn extends ChessPiece implements Movable{
             }
         }
     }
-
-    public void attack(int x,int y){
-        if (!isValidMove(x,y)) return;
-
+    private String getImageURL(boolean isWhite) {
+        return isWhite ? "wPawn.png" : "bPawn.png";
     }
 }
