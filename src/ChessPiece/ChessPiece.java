@@ -9,21 +9,21 @@ import javafx.scene.input.MouseEvent;
 
 import java.util.ArrayList;
 
-public abstract class ChessPiece extends ImageView implements Movable {
+public abstract class ChessPiece implements Movable {
     private int posX;
     private int posY;
     private double rate;
     private String pieceUrl;
     private boolean whiteTeam; //white is true black is false
     protected ArrayList<ChessPosition> possibleMoves;
-    public Image icon;
+    //public Image icon; //to be removed
 
     public ChessPiece(int x, int y, boolean t) {
         setTeam(t);
         posX = x;
         posY = y;
-        addEventHandler();
-        icon=new Image(getPieceUrl());
+        //addEventHandler();
+        //icon=new Image(getPieceUrl());
     }
 
 
@@ -119,24 +119,25 @@ public abstract class ChessPiece extends ImageView implements Movable {
             if (GameInstance.getInstance().getChessPieceAt(x,y)==null){
                 setPosY(y);
                 setPosX(x);
+                System.out.println(this+" moved to "+getPosX()+" "+getPosY());
             }
             else{
                 //attack
                 if (GameUtil.attack(this,GameInstance.getInstance().getChessPieceAt(x,y),x,y)){ //successfully attacked
                     setPosY(y);
                     setPosX(x);
-                    System.out.println(this +"killed an enemy at "+getPosX()+" "+getPosY());
+                    System.out.println(this +" killed an enemy at "+getPosX()+" "+getPosY());
                 }
                 else{ //failed to attack, killed
                     GameInstance.getInstance().setChessPieceAt(this.getPosX(),this.getPosY(),null);
                     setPosX(-1);
                     setPosY(-1);
-                    System.out.println(this+"failed to kill, got revenged to death.");
+                    System.out.println(this+" failed to kill, got revenged to death.");
                 }
             }
             return true; //successfully moved, this can move with or w/o attack or can be revenged to death
         }
-        return false; //invalidMove
+        return false; //invalid Move
     }
 }
 

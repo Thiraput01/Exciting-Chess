@@ -5,7 +5,6 @@ import GameLogic.GameUtil;
 import java.util.ArrayList;
 
 public class Rook extends ChessPiece implements Movable{
-    private ArrayList<ChessPosition> possibleMoves;
     public Rook(int x,int y,boolean isWhite){
         super(x,y,isWhite);
         setRate(0.8);

@@ -6,7 +6,7 @@ public class King extends ChessPiece implements Movable {
 
     public King(int x, int y, boolean isWhite) {
         super(x, y, isWhite);
-        setRate(0.9);
+        setRate(1.6);
         setPieceUrl(getImageURL(isWhite));
         possibleMoves = new ArrayList<>();
     }
@@ -23,8 +23,8 @@ public class King extends ChessPiece implements Movable {
     }
 
 
-    @Override
-    /*public void setCurrentAllPossibleMoves() {
+    /*@Override
+    public void setCurrentAllPossibleMoves() {
         possibleMoves.clear(); // Clear the existing list
 
         int currentX = getPosX();
@@ -74,6 +74,7 @@ public class King extends ChessPiece implements Movable {
         capturedSquare.removePiece();
     }*/
 
+    @Override
     public void setCurrentAllPossibleMoves() {
         possibleMoves.clear();
         for (int i=0;i<8;i++){
