@@ -1,10 +1,8 @@
 package ChessPiece;
 
-import ChessBoard.Board;
-import ChessBoard.Square;
+import GameLogic.GameInstance;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class King extends ChessPiece implements Movable {
 
@@ -23,18 +21,12 @@ public class King extends ChessPiece implements Movable {
     public boolean isValidMove(int toX, int toY) {
         int dX = Math.abs(toX - getPosX());
         int dY = Math.abs(toY - getPosY());
-        return (dX == 1 || dY == 1) && (dX <= 1 && dY <= 1);
-    }
-
-    @Override
-    public void move(int x, int y) {
-        setPosX(x);
-        setPosY(y);
+        return (dX == 1 || dY == 1);
     }
 
 
     @Override
-    public void setCurrentAllPossibleMoves() {
+    /*public void setCurrentAllPossibleMoves() {
         possibleMoves.clear(); // Clear the existing list
 
         int currentX = getPosX();
@@ -82,5 +74,27 @@ public class King extends ChessPiece implements Movable {
         Board chessBoard = Board.getInstance();
         Square capturedSquare = chessBoard.getSquare(toX, toY);
         capturedSquare.removePiece();
+    }*/
+
+    public void move(int x, int y){
+        if (isValidMove(x,y)){
+            if (GameInstance.getInstance().getChessPieceAt(x,y)==null){
+                setPosY(y);
+                setPosX(x);
+            }
+            else{
+                //attack
+            }
+        }
+    }
+
+    @Override
+    public void setCurrentAllPossibleMoves() {
+        possibleMoves.clear();
+        for (int i=0;i<8;i++){
+            for (int e=0;e<8;e++){
+                if (isValidMove(i,e)) possibleMoves.add(new ChessPosition(i,e));
+            }
+        }
     }
 }
