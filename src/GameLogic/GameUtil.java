@@ -16,7 +16,7 @@ public class GameUtil {
 
     public static boolean attack(ChessPiece attacker, ChessPiece defender,int x,int y){
         if (successAttack(attacker.getRate(),defender.getRate())){
-            GameInstance.getInstance().setChessPieceAt(x,y,attacker);
+            GameLogic.getInstance().setChessPieceAt(x,y,attacker);
             defender.setPosX(-1);
             defender.setPosY(-1);
             return true;

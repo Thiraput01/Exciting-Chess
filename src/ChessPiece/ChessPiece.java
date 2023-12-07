@@ -1,10 +1,8 @@
 package ChessPiece;
 
-import GameLogic.GameInstance;
+import GameLogic.GameLogic;
 import GameLogic.GameUtil;
 import javafx.event.EventHandler;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 import java.util.ArrayList;
@@ -116,24 +114,20 @@ public abstract class ChessPiece implements Movable {
 
     public boolean move(int x, int y){
         if (isValidMove(x,y)){
-            if (GameInstance.getInstance().getChessPieceAt(x,y)==null){
-                GameInstance.getInstance().setChessPieceAt(getPosX(),getPosY(),null);
+            if (GameLogic.getInstance().getChessPieceAt(x,y)==null){
                 setPosY(y);
                 setPosX(x);
-                GameInstance.getInstance().setChessPieceAt(getPosX(),getPosY(),this);
                 System.out.println(this+" moved to "+getPosX()+" "+getPosY());
             }
             else{
                 //attack
-                if (GameUtil.attack(this,GameInstance.getInstance().getChessPieceAt(x,y),x,y)){ //successfully attacked
-                    GameInstance.getInstance().setChessPieceAt(getPosX(),getPosY(),null);
+                if (GameUtil.attack(this, GameLogic.getInstance().getChessPieceAt(x,y),x,y)){ //successfully attacked
                     setPosY(y);
                     setPosX(x);
-                    GameInstance.getInstance().setChessPieceAt(getPosX(),getPosY(),this);
                     System.out.println(this +" killed an enemy at "+getPosX()+" "+getPosY());
                 }
                 else{ //failed to attack, killed
-                    GameInstance.getInstance().setChessPieceAt(this.getPosX(),this.getPosY(),null);
+                    GameLogic.getInstance().setChessPieceAt(this.getPosX(),this.getPosY(),null);
                     setPosX(-1);
                     setPosY(-1);
                     System.out.println(this+" failed to kill, got revenged to death.");
