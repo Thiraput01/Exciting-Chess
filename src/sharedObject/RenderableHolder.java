@@ -13,7 +13,7 @@ public class RenderableHolder {
     private static final RenderableHolder instance = new RenderableHolder();
     private List<IRenderable> entities;
 
-    private Comparator<IRenderable> comparator;
+    private final Comparator<IRenderable> comparator;
 
     //Images
     public static Image wallpaper;
@@ -27,6 +27,8 @@ public class RenderableHolder {
     public static Image wQueen;
     public static Image bRook;
     public static Image wRook;
+    public static Image wBishop;
+    public static Image bBishop;
 
     //audio
     public static AudioClip captureChess;
@@ -64,12 +66,18 @@ public class RenderableHolder {
         wQueen = new Image(ClassLoader.getSystemResource("wQueen.png").toString());
         bRook = new Image(ClassLoader.getSystemResource("bRook.png").toString());
         wRook = new Image(ClassLoader.getSystemResource("wRook.png").toString());
+        bBishop = new Image(ClassLoader.getSystemResource("bBishop.png").toString());
+        wBishop = new Image(ClassLoader.getSystemResource("wBishop.png").toString());
 
         // Load Audio Clips
         captureChess = new AudioClip(ClassLoader.getSystemResource("captureChess.wav").toString());
         captureFailed = new AudioClip(ClassLoader.getSystemResource("captureFailed.wav").toString());
         clickButton = new AudioClip(ClassLoader.getSystemResource("clickButton.wav").toString());
         moveChess = new AudioClip(ClassLoader.getSystemResource("moveChess.wav").toString());
+    }
+
+    public void clear() {
+        entities = new ArrayList<IRenderable>();
     }
 
     public void add(IRenderable entity) {

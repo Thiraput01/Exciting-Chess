@@ -1,9 +1,13 @@
 package Drawing;
 
 
+import GameLogic.GameInstance;
+import Main.Main;
+import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
@@ -19,7 +23,6 @@ import javafx.scene.text.FontWeight;
 public class StartScreen extends BorderPane {
 
     private Scene scene;
-
     public StartScreen(){
         super();
         setPrefSize(1366, 768);
@@ -85,6 +88,7 @@ public class StartScreen extends BorderPane {
                     @Override
                     public void run() {
                         RenderableHolder.clickButton.play();
+                        toMainScreen();
                     }
                 });
                 toMainScreen();
@@ -119,6 +123,22 @@ public class StartScreen extends BorderPane {
 
 
     public void toMainScreen(){
+        MainScreenPane mainScreenPane = new MainScreenPane();
+        Group group = new Group(mainScreenPane);
+        scene = new Scene(group);
+        RenderableHolder.getInstance().clear();
+        //TODO GameInstance.getInstance().start();
+        Main.stage.setScene(scene);
+
+        mainScreenPane.requestFocus();
+
+        AnimationTimer animationTimer = new AnimationTimer() {
+            @Override
+            public void handle(long l) {
+                //TODO G
+            }
+        };
+        animationTimer.start();
     }
 }
 
