@@ -1,6 +1,7 @@
 package Drawing;
 
 
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -21,38 +22,40 @@ public class StartScreen extends BorderPane {
 
     public StartScreen(){
         super();
-        setPrefSize(1024, 768);
+        setPrefSize(1366, 768);
 
-        Canvas canvas = new Canvas(1024, 768);
+        Canvas canvas = new Canvas(1366, 768);
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
         //set background image
-        gc.drawImage(RenderableHolder.wallpaper, 0, 0, 1024, 768);
+        gc.drawImage(RenderableHolder.wallpaper, 0, 0, 1366, 768);
         getChildren().add(canvas);
 
         //create vBox to add texts, set padding to 30
         VBox vBox = new VBox(30);
         vBox.setAlignment(Pos.CENTER);
         //set text font
-        Font titleFont = Font.font("Impact", FontWeight.MEDIUM, 50);
-        Font playFont = Font.font("Cochin", FontWeight.BOLD, 30);
-        Font exitFont = Font.font("Cochin", FontWeight.BOLD, 30);
+        Font titleFont = Font.font("Impact", FontWeight.MEDIUM, 100);
+        Font playFont = Font.font("Cochin", FontWeight.BOLD, 50);
+        Font exitFont = Font.font("Cochin", FontWeight.BOLD, 50);
 
         //set text
-        Text title = new Text("EXCITING CHESS");
+        Text title = new Text("EXCITING  CHESS");
         title.setFont(titleFont);
         title.setFill(Color.WHITE);
 
-        Text playText = new Text("-> PLAY");
+        Text playText = new Text("-PLAY");
         playText.setFont(playFont);
         playText.setFill(Color.WHITE);
         playText.setOpacity(0.7);
+        playText.setTranslateX(2);
 
-        Text exitText = new Text("-> EXIT");
+        Text exitText = new Text("-EXIT");
         exitText.setFont(exitFont);
         exitText.setFill(Color.WHITE);
         exitText.setOpacity(0.7);
+        exitText.setTranslateX(2);
 
         //add components to Vbox
         vBox.getChildren().addAll(title, playText, exitText);
@@ -63,6 +66,7 @@ public class StartScreen extends BorderPane {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 playText.setOpacity(1);
+                playText.setTranslateX(0);
             }
         });
 
@@ -70,27 +74,37 @@ public class StartScreen extends BorderPane {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 playText.setOpacity(0.7);
+                playText.setTranslateX(2);
             }
         });
 
         playText.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        RenderableHolder.clickButton.play();
+                    }
+                });
                 toMainScreen();
             }
         });
 
+        //set actions on exit text
         exitText.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                playText.setOpacity(1);
+                exitText.setOpacity(1);
+                exitText.setTranslateX(0);
             }
         });
 
         exitText.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                playText.setOpacity(0.7);
+                exitText.setOpacity(0.7);
+                exitText.setTranslateX(2);
             }
         });
 
@@ -105,7 +119,6 @@ public class StartScreen extends BorderPane {
 
 
     public void toMainScreen(){
-        RenderableHolder.clickButton.play();
     }
 }
 
