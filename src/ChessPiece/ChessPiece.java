@@ -137,7 +137,7 @@ public abstract class ChessPiece implements Movable {
             }
             return true; //successfully moved, this can move with or w/o attack or can be revenged to death
         }
-        return false; //invalid Move
+        return false; //invalid Move,new input needed
     }
 }
 

@@ -1,5 +1,6 @@
 package ChessPiece;
 
+import GameLogic.GameInstance;
 import GameLogic.GameUtil;
 
 import java.util.ArrayList;
@@ -22,8 +23,9 @@ public class Rook extends ChessPiece implements Movable{
     public void setCurrentAllPossibleMoves(){
         possibleMoves.clear();
         for(int i=0;i<8;i++){
-            if (i!=getPosX()) possibleMoves.add(new ChessPosition(i,getPosY()));
-            if (i!=getPosY()) possibleMoves.add(new ChessPosition(getPosX(),i));
+            for (int e=0;e<8;e++){
+                if (isValidMove(i,e) && (GameInstance.getInstance().getChessPieceAt(i,e)==null || (GameInstance.getInstance().getChessPieceAt(i,e)!=null && GameInstance.getInstance().getChessPieceAt(i,e).isWhite()!=isWhite()))) possibleMoves.add(new ChessPosition(i,e));
+            }
         }
     }
 }
