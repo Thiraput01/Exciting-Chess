@@ -1,6 +1,5 @@
 package ChessPiece;
 
-import ChessBoard.Board;
 import ChessBoard.Square;
 import javafx.event.EventHandler;
 import javafx.scene.image.ImageView;
@@ -14,6 +13,7 @@ public abstract class ChessPiece extends ImageView implements Movable {
     private double rate;
     private String pieceUrl;
     private boolean whiteTeam; //white is true black is false
+    protected ArrayList<ChessPosition> possibleMoves;
 
     public ChessPiece(int x, int y, boolean t) {
         setTeam(t);
@@ -36,7 +36,7 @@ public abstract class ChessPiece extends ImageView implements Movable {
         return rate;
     }
 
-    public void setRate(int rate) {
+    public void setRate(double rate) {
         this.rate = rate;
     }
 
@@ -52,7 +52,7 @@ public abstract class ChessPiece extends ImageView implements Movable {
         setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                getAllPossibleMoves();
+                setCurrentAllPossibleMoves();
             }
         });
     }
@@ -108,11 +108,11 @@ public abstract class ChessPiece extends ImageView implements Movable {
         return String.valueOf(file) + rank;
     }
 
-    public abstract void getAllPossibleMoves();
-
+    public abstract void setCurrentAllPossibleMoves();
 
     public abstract void capture(int x, int y);
 
     public abstract void handleCapture(Square destination, int toX, int toY);
+
 }
 

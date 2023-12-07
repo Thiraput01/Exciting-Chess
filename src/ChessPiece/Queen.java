@@ -3,8 +3,16 @@ package ChessPiece;
 import GameLogic.GameInstance;
 import GameLogic.GameUtil;
 
+import java.util.ArrayList;
+
 public class Queen extends ChessPiece implements Movable{
-    private static final double rate=0.9;
+    private ArrayList<ChessPosition> possibleMoves;
+    public Queen(int x,int y,boolean isWhite){
+        super(x,y,isWhite);
+        setRate(0.9);
+        setPieceUrl(getImageURL(isWhite));
+        possibleMoves=new ArrayList<>();
+    }
 
     public boolean isValidMove(int toX, int toY){
         if (!GameUtil.inRangeOfBoard(toX,toY)) return false;
@@ -22,8 +30,15 @@ public class Queen extends ChessPiece implements Movable{
             }
         }
     }
-    public void attack(int x,int y){
-        if (!isValidMove(x,y)) return;
-
+    private String getImageURL(boolean isWhite) {
+        return isWhite ? "wQueen.png" : "bQueen.png";
+    }
+    public void setCurrentAllPossibleMoves(){
+        possibleMoves.clear();
+        for (int i=0;i<8;i++){
+            for (int e=0;e<8;e++){
+                if (isValidMove(i,e)) possibleMoves.add(new ChessPosition(i,e));
+            }
+        }
     }
 }

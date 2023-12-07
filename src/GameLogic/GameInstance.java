@@ -30,4 +30,7 @@ public class GameInstance {
     public ChessPiece getChessPieceAt(int x,int y){
         return board.get(x).get(y);
     }
+    public void setChessPieceAt(int x,int y,ChessPiece chessPiece){
+        board.get(x).set(y,chessPiece);
+    }
 }

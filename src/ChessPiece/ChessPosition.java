@@ -1,7 +1,5 @@
 package ChessPiece;
 
-import javax.swing.text.Position;
-
 public class ChessPosition {
     private int x;
     private int y;

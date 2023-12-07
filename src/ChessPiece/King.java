@@ -8,11 +8,9 @@ import java.util.Random;
 
 public class King extends ChessPiece implements Movable {
 
-    private ArrayList<ChessPosition> possibleMoves;
-
     public King(int x, int y, boolean isWhite) {
         super(x, y, isWhite);
-        setRate(90);
+        setRate(0.9);
         setPieceUrl(getImageURL(isWhite));
         possibleMoves = new ArrayList<>();
     }
@@ -36,7 +34,7 @@ public class King extends ChessPiece implements Movable {
 
 
     @Override
-    public void getAllPossibleMoves() {
+    public void setCurrentAllPossibleMoves() {
         possibleMoves.clear(); // Clear the existing list
 
         int currentX = getPosX();
