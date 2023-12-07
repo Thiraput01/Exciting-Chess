@@ -22,13 +22,33 @@ import javafx.scene.text.FontWeight;
 
 public class ChessboardPane extends BorderPane {
 
-    public ChessboardPane(){
+    public ChessboardPane() {
         super();
-        setPrefSize(952, 768);
-        Canvas canvas = new Canvas(952, 688);
+        setPrefSize(720, 720);
+        Canvas canvas = new Canvas(720, 720);
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        //gc.fillRect();
-
+        for (int i = 1; i <= 8; i++) {
+            for (int j = 1; j <= 8; j++) {
+                int posX = i * 90;
+                int posY = j * 90;
+                if (i % 2 == 0) {
+                    drawRectLightBrown(gc, posX, posY);
+                } else {
+                    drawRectBrown(gc, posX, posY);
+                }
+            }
+        }
 
     }
+
+    public void drawRectBrown(GraphicsContext gc, int posX, int posY) {
+        gc.setFill(Color.TAN);
+        gc.fillRect(posX, posY, 90, 90);
+    }
+
+    public void drawRectLightBrown(GraphicsContext gc, int posX, int posY) {
+        gc.setFill(Color.BEIGE);
+        gc.fillRect(posX, posY, 90, 90);
+    }
+
 }
