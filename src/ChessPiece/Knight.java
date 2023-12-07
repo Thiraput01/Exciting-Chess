@@ -1,10 +1,20 @@
 package ChessPiece;
 
+import ChessBoard.Board;
+import ChessBoard.Square;
 import GameLogic.GameInstance;
 import GameLogic.GameUtil;
 
+import java.util.ArrayList;
+
 public class Knight extends ChessPiece implements Movable{
-    private static final double rate=0.7;
+
+    public Knight(int x,int y,boolean isWhite){
+        super(x,y,isWhite);
+        setRate(0.7);
+        setPieceUrl(getImageURL(isWhite));
+        possibleMoves=new ArrayList<>();
+    }
 
     public boolean isValidMove(int toX, int toY){
         if (!GameUtil.inRangeOfBoard(toX,toY)) return false;
@@ -38,5 +48,20 @@ public class Knight extends ChessPiece implements Movable{
     }
     private String getImageURL(boolean isWhite) {
         return isWhite ? "wKnight.png" : "bKnight.png";
+    }
+    public void setCurrentAllPossibleMoves() {
+        possibleMoves.clear(); // Clear the existing list
+
+        int currentX = getPosX();
+        int currentY = getPosY();
+        if (currentX+1<8 && currentY+2<8)possibleMoves.add(new ChessPosition(currentX+1,currentY+2));
+        if (currentX+1<8 && currentY-2>=0)possibleMoves.add(new ChessPosition(currentX+1,currentY-2));
+        if (currentX-1>=0 && currentY+2<8)possibleMoves.add(new ChessPosition(currentX-1,currentY+2));
+        if (currentX-1>=0 && currentY-2>=0)possibleMoves.add(new ChessPosition(currentX-1,currentY-2));
+
+        if (currentY+1<8 && currentX+2<8)possibleMoves.add(new ChessPosition(currentX+2,currentY+1));
+        if (currentY-1<8 && currentX+2>=0)possibleMoves.add(new ChessPosition(currentX+2,currentY-1));
+        if (currentY+1>=0 && currentX-2<8)possibleMoves.add(new ChessPosition(currentX-2,currentY+1));
+        if (currentY-1>=0 && currentX-2>=0)possibleMoves.add(new ChessPosition(currentX-2,currentY-1));
     }
 }
