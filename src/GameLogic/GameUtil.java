@@ -34,16 +34,18 @@ public class GameUtil {
         int ix = currentX;
         int iy = currentY;
         if (dy == 0) { // checking horizontal path
-            int directionX=(dx>0)?1:-1;
-            for (int i=0;i!=Math.abs(dx);i++){
-                ix+=directionX;
-                if (GameLogic.getInstance().getChessPieceAt(ix, iy) != null && GameLogic.getInstance().getChessPieceAt(ix, iy).isWhite() == thisPiece.isWhite()) return false;
+            int directionX = (dx > 0) ? 1 : -1;
+            for (int i = 0; i != Math.abs(dx); i++) {
+                ix += directionX;
+                if (GameLogic.getInstance().getChessPieceAt(ix, iy) != null && GameLogic.getInstance().getChessPieceAt(ix, iy).isWhite() == thisPiece.isWhite())
+                    return false;
             }
         } else if (dx == 0) { // checking vertical path
-            int directionY=(dy>0)?1:-1;
-            for (int i=0;i!=Math.abs(dy);i++){
-                iy+=directionY;
-                if (GameLogic.getInstance().getChessPieceAt(ix, iy) != null && GameLogic.getInstance().getChessPieceAt(ix, iy).isWhite() == thisPiece.isWhite()) return false;
+            int directionY = (dy > 0) ? 1 : -1;
+            for (int i = 0; i != Math.abs(dy); i++) {
+                iy += directionY;
+                if (GameLogic.getInstance().getChessPieceAt(ix, iy) != null && GameLogic.getInstance().getChessPieceAt(ix, iy).isWhite() == thisPiece.isWhite())
+                    return false;
             }
         } else { //checking diagonal path
             int directionX = (dx > 0) ? 1 : -1;
