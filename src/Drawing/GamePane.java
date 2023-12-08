@@ -12,7 +12,7 @@ import sharedObject.IRenderable;
 
 import java.awt.*;
 
-public class GamePane implements IRenderable {
+public class GamePane extends BorderPane implements IRenderable {
 
     @Override
     public void draw(GraphicsContext gc) {
@@ -32,10 +32,6 @@ public class GamePane implements IRenderable {
         return false;
     }
 
-    @Override
-    public boolean isVisible() {
-        return true;
-    }
 
     private void drawYnum(GraphicsContext gc) {
         gc.setFont(Font.font("Impact", FontWeight.LIGHT, 30));
@@ -60,6 +56,8 @@ public class GamePane implements IRenderable {
     }
 
     private void drawTimerBar(GraphicsContext gc){
+        gc.setLineWidth(3);
+       // gc.fillRoundRect(32, 360,);
        // gc.fillRoundRect();
 
     }
