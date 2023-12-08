@@ -1,6 +1,6 @@
 package ChessPiece;
 
-import GameLogic.GameLogic;
+import GameLogic.GameUtil;
 
 import java.util.ArrayList;
 
@@ -18,7 +18,8 @@ public class King extends ChessPiece implements Movable {
     }
 
     @Override
-    public boolean isValidMove(int toX, int toY) {
+    public boolean isValidMove(int toX, int toY) { //valid by general rules
+        if (!GameUtil.inRangeOfBoard(toX, toY)) return false;
         int dX = Math.abs(toX - getPosX());
         int dY = Math.abs(toY - getPosY());
         return (dX == 1 || dY == 1);
@@ -81,9 +82,7 @@ public class King extends ChessPiece implements Movable {
         possibleMoves.clear();
         for (int i = 0; i < 8; i++) {
             for (int e = 0; e < 8; e++) {
-                if (isValidMove(i, e) && (GameLogic.getInstance().getChessPieceAt(i, e) == null
-                        || (GameLogic.getInstance().getChessPieceAt(i, e)
-                        != null && GameLogic.getInstance().getChessPieceAt(i, e).isWhite() != isWhite())))
+                if (isValidMove(i, e) && GameUtil.isClearPath(getPosX(),getPosY(),i,e,this))
                     possibleMoves.add(new ChessPosition(i, e));
             }
         }
