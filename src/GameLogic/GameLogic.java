@@ -111,6 +111,14 @@ public class GameLogic {
         return time_left_black / 60 + " : " + time_left_black % 60;
     }
 
+    public long getTimeLeftWhite() {
+        return time_left_white;
+    }
+
+    public long getTimeLeftBlack() {
+        return time_left_black;
+    }
+
     public void setTime_left_white(long time_left_white) {
         if (time_left_white < 0) time_left_white = 0;
         this.time_left_white = time_left_white;

@@ -86,7 +86,7 @@ public class ChessboardPane extends Canvas {
             for (int j = 0; j < 8; j++) {
                 int posX = i * CELL_SIZE;
                 int posY = j * CELL_SIZE;
-                if (i % 2 == 0) {
+                if ((i + j) % 2 == 0) {
                     drawRectLightBrown(gc, posX, posY);
                 } else {
                     drawRectBrown(gc, posX, posY);
