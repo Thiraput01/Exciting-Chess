@@ -1,36 +1,91 @@
 package Drawing;
 
+import ChessPiece.ChessPiece;
 import GameLogic.GameLogic;
-import Main.Main;
-import javafx.animation.AnimationTimer;
-import javafx.application.Platform;
-import javafx.event.EventHandler;
-import javafx.geometry.Pos;
-import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.image.Image;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import sharedObject.RenderableHolder;
-import javafx.scene.text.Text;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 
 
-public class ChessboardPane extends BorderPane {
+public class ChessboardPane extends Canvas {
+
+    private static final int CELL_SIZE = 90;
+    private static final int OFFSET = 15;
+    private static final int PIECE_SIZE = 60;
 
     public ChessboardPane() {
-        super();
-        setPrefSize(720, 720);
-        Canvas canvas = new Canvas(720, 720);
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-        for (int i = 1; i <= 8; i++) {
-            for (int j = 1; j <= 8; j++) {
-                int posX = i * 90;
-                int posY = j * 90;
+        super(720, 720);
+        initialize();
+    }
+
+    public void drawRectBrown(GraphicsContext gc, int posX, int posY) {
+        gc.setFill(Color.TAN);
+        gc.fillRect(posX, posY, CELL_SIZE, CELL_SIZE);
+    }
+
+    public void drawRectLightBrown(GraphicsContext gc, int posX, int posY) {
+        gc.setFill(Color.BEIGE);
+        gc.fillRect(posX, posY, CELL_SIZE, CELL_SIZE);
+    }
+
+    public int changeToposX(int mouseX) {
+        return mouseX / CELL_SIZE;
+    }
+
+    public int changeToposY(int mouseY) {
+        return mouseY / CELL_SIZE;
+    }
+
+    public void initialize() {
+        updateBoard(GameLogic.getInstance());
+    }
+
+    public Image getPieceImage(ChessPiece piece) {
+        Image pieceImage;
+        String pieceType = piece.getPieceType();
+        if (piece.isWhite()) {
+            pieceImage = getImageForWhitePiece(pieceType);
+        } else {
+            pieceImage = getImageForBlackPiece(pieceType);
+        }
+        return pieceImage;
+    }
+
+    private Image getImageForWhitePiece(String pieceType) {
+        return switch (pieceType) {
+            case "Pawn" -> RenderableHolder.wPawn;
+            case "Knight" -> RenderableHolder.wKnight;
+            case "Bishop" -> RenderableHolder.wBishop;
+            case "Rook" -> RenderableHolder.wRook;
+            case "Queen" -> RenderableHolder.wQueen;
+            case "King" -> RenderableHolder.wKing;
+            default -> null;
+        };
+    }
+
+    private Image getImageForBlackPiece(String pieceType) {
+        return switch (pieceType) {
+            case "Pawn" -> RenderableHolder.bPawn;
+            case "Knight" -> RenderableHolder.bKnight;
+            case "Bishop" -> RenderableHolder.bBishop;
+            case "Rook" -> RenderableHolder.bRook;
+            case "Queen" -> RenderableHolder.bQueen;
+            case "King" -> RenderableHolder.bKing;
+            default -> null;
+        };
+    }
+
+    public void updateBoard(GameLogic gameLogic) {
+        GraphicsContext gc = getGraphicsContext2D();
+        gc.clearRect(0, 0, getWidth(), getHeight()); // Clear the canvas
+
+        // Draw the chessboard squares
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                int posX = i * CELL_SIZE;
+                int posY = j * CELL_SIZE;
                 if (i % 2 == 0) {
                     drawRectLightBrown(gc, posX, posY);
                 } else {
@@ -38,17 +93,23 @@ public class ChessboardPane extends BorderPane {
                 }
             }
         }
-
+        // Draw the chess pieces
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                ChessPiece piece = gameLogic.getChessPieceAt(i, j);
+                if (piece != null) {
+                    setImageAt(piece, i, j);
+                }
+            }
+        }
     }
 
-    public void drawRectBrown(GraphicsContext gc, int posX, int posY) {
-        gc.setFill(Color.TAN);
-        gc.fillRect(posX, posY, 90, 90);
-    }
-
-    public void drawRectLightBrown(GraphicsContext gc, int posX, int posY) {
-        gc.setFill(Color.BEIGE);
-        gc.fillRect(posX, posY, 90, 90);
+    public void setImageAt(ChessPiece piece, int posX, int posY) {
+        int x = posX * CELL_SIZE + OFFSET;
+        int y = posY * CELL_SIZE + OFFSET;
+        GraphicsContext gc = getGraphicsContext2D();
+        Image pieceImage = getPieceImage(piece);
+        gc.drawImage(pieceImage, x, y, PIECE_SIZE, PIECE_SIZE);
     }
 
 }

@@ -31,14 +31,17 @@ public class DescriptionPane extends BorderPane {
         Font descriptionFont = Font.font("Impact", FontWeight.EXTRA_LIGHT, 20);
         Font menu_exitFont = Font.font("Impact", FontWeight.MEDIUM, 25);
 
-        //Text descriptionText = new Text(GameLogic.getInstance().getCurrentdescribtion);
+        //Text descriptionText = new Text(GameLogic.getInstance().getCurrentDescription);
 
         Text menuText = new Text("Menu");
         menuText.setFont(menu_exitFont);
         menuText.setFill(Color.WHITE);
 
+
         Text exitText = new Text("Exit");
         exitText.setFont(menu_exitFont);
 
+        setAlignment(menuText, Pos.BOTTOM_LEFT);
+        setAlignment(exitText, Pos.BOTTOM_RIGHT);
     }
 }

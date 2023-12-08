@@ -42,9 +42,24 @@ public abstract class ChessPiece implements Movable {
         this.rate = rate;
     }
 
-    public String getPieceUrl() {
-        return pieceUrl;
+    public String getPieceType() {
+        if (this instanceof Pawn) {
+            return "Pawn";
+        } else if (this instanceof Knight) {
+            return "Knight";
+        } else if (this instanceof Bishop) {
+            return "Bishop";
+        } else if (this instanceof Rook) {
+            return "Rook";
+        } else if (this instanceof Queen) {
+            return "Queen";
+        } else if (this instanceof King) {
+            return "King";
+        }
+        return "";
     }
+
+
 
     public void setPieceUrl(String pieceUrl) {
         this.pieceUrl = pieceUrl;
