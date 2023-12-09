@@ -1,6 +1,5 @@
 package Drawing;
 
-import GameLogic.GameLogic;
 import Main.Main;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -36,6 +35,20 @@ public class DescriptionPane extends BorderPane {
 
         Text exitText = new Text("Exit");
         exitText.setFont(menu_exitFont);
+        exitText.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                exitText.setFill(Color.RED);
+                exitText.setTranslateX(-2);
+            }
+        });
+        exitText.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                exitText.setFill(Color.BLACK);
+                exitText.setTranslateX(0);
+            }
+        });
         exitText.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
