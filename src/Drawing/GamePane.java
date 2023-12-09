@@ -78,8 +78,8 @@ public class GamePane extends BorderPane implements IRenderable {
         Color color = Color.web("#535353");
         gc.setLineWidth(3);
         GameLogic gameInstance = GameLogic.getInstance();
-        double whitePercentage = gameInstance.getTimeLeftWhite() / (double) gameInstance.getCurrent_game_time();
-        double blackPercentage = gameInstance.getTimeLeftBlack() / (double) gameInstance.getCurrent_game_time();
+        double whitePercentage = gameInstance.getTimeLeftWhite() / 300.0;
+        double blackPercentage = gameInstance.getTimeLeftBlack() / 300.0;
 
         double whiteBarHeight = 320 * whitePercentage;
         double blackBarHeight = 320 * blackPercentage;
