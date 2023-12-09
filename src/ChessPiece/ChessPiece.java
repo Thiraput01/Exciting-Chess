@@ -125,13 +125,16 @@ public abstract class ChessPiece implements Movable {
     public boolean move(int x, int y){
         if (isValidMove(x,y)){
             if (GameLogic.getInstance().getChessPieceAt(x,y)==null){
+                GameLogic.getInstance().setChessPieceAt(getPosX(),getPosY(),null);
                 setPosY(y);
                 setPosX(x);
+                GameLogic.getInstance().setChessPieceAt(getPosX(),getPosY(),this);
                 System.out.println(this+" moved to "+getPosX()+" "+getPosY());
             }
             else{
                 //attack
                 if (GameUtil.attack(this, GameLogic.getInstance().getChessPieceAt(x,y),x,y)){ //successfully attacked
+                    GameLogic.getInstance().setChessPieceAt(getPosX(),getPosY(),null);
                     setPosY(y);
                     setPosX(x);
                     System.out.println(this +" killed an enemy at "+getPosX()+" "+getPosY());
