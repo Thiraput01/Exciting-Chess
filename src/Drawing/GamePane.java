@@ -1,6 +1,7 @@
 package Drawing;
 
 import GameLogic.GameLogic;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -12,21 +13,27 @@ import sharedObject.IRenderable;
 
 public class GamePane extends BorderPane implements IRenderable {
 
+    private Canvas yCoordinate;
+    private Canvas xCoordinate;
     private ChessboardPane chessboardPane;
 
     public GamePane(){
         chessboardPane = new ChessboardPane();
         setPrefSize(816, 768);
         setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, null, null)));
+        yCoordinate=new Canvas(100,768);
+        setLeft(yCoordinate);
+        drawYnum(yCoordinate.getGraphicsContext2D());
+        xCoordinate = new Canvas(816,50);
+        setTop(xCoordinate);
+        drawXnum(xCoordinate.getGraphicsContext2D());
         setCenter(chessboardPane);
-        setCenter(chessboardPane);
+        GraphicsContext gc= chessboardPane.getGraphicsContext2D();
+        draw(gc);
     }
     @Override
     public void draw(GraphicsContext gc) {
         GameLogic.getInstance();
-
-        drawXnum(gc);
-        drawYnum(gc);
         drawTimerBar(gc);
         drawTimer(gc);
     }
@@ -43,24 +50,18 @@ public class GamePane extends BorderPane implements IRenderable {
 
 
     private void drawYnum(GraphicsContext gc) {
-        gc.setFont(Font.font("Impact", FontWeight.LIGHT, 30));
+        gc.setFont(Font.font("Impact", FontWeight.LIGHT, 40));
+        gc.setFill(Color.BLACK);
         for (int y = 0; y < 8; y++) {
-            if (y == 0) {
-                gc.fillText(Integer.toString(y), 18, 78 + 30, 30);
-            } else {
-                gc.fillText(Integer.toString(y), 18, 78 + (90 * y), 30);
-            }
+            gc.fillText(Integer.toString(y), 80, 110+80*y , 30);
         }
     }
 
     private void drawXnum(GraphicsContext gc) {
-        gc.setFont(Font.font("Impact", FontWeight.LIGHT, 30));
+        gc.setFont(Font.font("Impact", FontWeight.LIGHT, 40));
+        gc.setFill(Color.BLACK);
         for (int x = 0; x < 8; x++) {
-            if (x == 0) {
-                gc.fillText(Integer.toString(x), 48 + 30, 48, 30);
-            } else {
-                gc.fillText(Integer.toString(x), 48 + (90 * x), 48, 30);
-            }
+            gc.fillText(Integer.toString(x), 168+80*x, 40, 30);
         }
     }
 
@@ -102,4 +103,3 @@ public class GamePane extends BorderPane implements IRenderable {
     }
 
 }
-
