@@ -33,6 +33,22 @@ public class DescriptionPane extends BorderPane {
         menuText.setFont(menu_exitFont);
         menuText.setFill(Color.BLACK);
 
+        menuText.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                menuText.setOpacity(0.7);
+                menuText.setTranslateX(-2);
+            }
+        });
+
+        menuText.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                menuText.setOpacity(1);
+                menuText.setTranslateX(0);
+            }
+        });
+
         Text exitText = new Text("Exit");
         exitText.setFont(menu_exitFont);
         exitText.setOnMouseEntered(new EventHandler<MouseEvent>() {
