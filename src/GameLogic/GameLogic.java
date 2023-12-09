@@ -1,17 +1,7 @@
 package GameLogic;
 
-import ChessPiece.ChessPiece;
-import ChessPiece.Knight;
-import ChessPiece.Pawn;
-import ChessPiece.Rook;
-import ChessPiece.King;
-import ChessPiece.Queen;
-import ChessPiece.Bishop;
-import Drawing.ChessboardPane;
-import javafx.scene.image.Image;
-import sharedObject.RenderableHolder;
+import ChessPiece.*;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 public class GameLogic {
@@ -121,6 +111,14 @@ public class GameLogic {
         return time_left_black / 60 + " : " + time_left_black % 60;
     }
 
+    public long getTimeLeftWhite() {
+        return time_left_white;
+    }
+
+    public long getTimeLeftBlack() {
+        return time_left_black;
+    }
+
     public void setTime_left_white(long time_left_white) {
         if (time_left_white < 0) time_left_white = 0;
         this.time_left_white = time_left_white;
@@ -138,5 +136,7 @@ public class GameLogic {
     public long getCurrent_game_time() {
         return current_game_time;
     }
-
+    public long getTimeLeft(boolean isWhite){
+        return isWhite? time_left_white:time_left_black;
+    }
 }

@@ -2,8 +2,6 @@ package ChessPiece;
 
 import GameLogic.GameLogic;
 import GameLogic.GameUtil;
-import javafx.event.EventHandler;
-import javafx.scene.input.MouseEvent;
 
 import java.util.ArrayList;
 
@@ -14,14 +12,11 @@ public abstract class ChessPiece implements Movable {
     private String pieceUrl;
     private boolean whiteTeam; //white is true black is false
     protected ArrayList<ChessPosition> possibleMoves;
-    //public Image icon; //to be removed
 
     public ChessPiece(int x, int y, boolean t) {
         setTeam(t);
         posX = x;
         posY = y;
-        //addEventHandler();
-        //icon=new Image(getPieceUrl());
     }
 
 

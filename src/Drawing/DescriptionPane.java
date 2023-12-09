@@ -1,47 +1,94 @@
 package Drawing;
 
-import GameLogic.GameLogic;
 import Main.Main;
-import javafx.animation.AnimationTimer;
-import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
-import sharedObject.RenderableHolder;
-import javafx.scene.text.Text;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import sharedObject.RenderableHolder;
 
 public class DescriptionPane extends BorderPane {
 
+    private Scene scene;
     public DescriptionPane() {
         super();
         setPrefSize(545, 768);
+        setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, null, null)));
         Canvas canvas = new Canvas(545, 768);
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        //Set text to draw
-        //1)description text
-        Font descriptionFont = Font.font("Impact", FontWeight.EXTRA_LIGHT, 20);
-        Font menu_exitFont = Font.font("Impact", FontWeight.MEDIUM, 25);
 
-        //Text descriptionText = new Text(GameLogic.getInstance().getCurrentDescription);
+        // Set text to draw
+        Font menu_exitFont = Font.font("Impact", FontWeight.MEDIUM, 50);
 
         Text menuText = new Text("Menu");
         menuText.setFont(menu_exitFont);
-        menuText.setFill(Color.WHITE);
+        menuText.setFill(Color.BLACK);
 
+        menuText.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                menuText.setOpacity(0.7);
+                menuText.setTranslateX(-2);
+            }
+        });
+
+        menuText.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                menuText.setOpacity(1);
+                menuText.setTranslateX(0);
+            }
+        });
 
         Text exitText = new Text("Exit");
         exitText.setFont(menu_exitFont);
+        exitText.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                exitText.setFill(Color.RED);
+                exitText.setTranslateX(-2);
+            }
+        });
+        exitText.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                exitText.setFill(Color.BLACK);
+                exitText.setTranslateX(0);
+            }
+        });
+        exitText.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                toStartScreen();
+            }
+        });
 
-        setAlignment(menuText, Pos.BOTTOM_LEFT);
-        setAlignment(exitText, Pos.BOTTOM_RIGHT);
+        // Add Text nodes to an HBox
+        HBox textContainer = new HBox(100, menuText, exitText);
+        textContainer.setAlignment(Pos.CENTER);
+
+        // Set the HBox as the bottom of the BorderPane
+        setBottom(textContainer);
+    }
+
+    public void toStartScreen(){
+        RenderableHolder.clickButton.play();
+        StartScreen startScreen = new StartScreen();
+        Group group = new Group(startScreen);
+        scene = new Scene(group);
+        RenderableHolder.getInstance().clear();
+        Main.stage.setScene(scene);
+        startScreen.requestFocus();
     }
 }

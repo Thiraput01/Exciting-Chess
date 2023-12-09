@@ -1,7 +1,10 @@
 package Drawing;
 
 import javafx.geometry.Pos;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 
 public class MainScreenPane extends HBox {
 
@@ -12,6 +15,7 @@ public class MainScreenPane extends HBox {
     public MainScreenPane() {
         super();
         setPrefSize(1366, 768);
+        setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
         // 1366 split to -> 961 for game ,space 5 and 400 for dec
         gamePane = new GamePane();
         descriptionPane = new DescriptionPane();
@@ -29,7 +33,7 @@ public class MainScreenPane extends HBox {
     }
 
     public static DescriptionPane getDescriptionPane() {
-        if(descriptionPane == null){
+        if (descriptionPane == null) {
             descriptionPane = new DescriptionPane();
         }
         return descriptionPane;

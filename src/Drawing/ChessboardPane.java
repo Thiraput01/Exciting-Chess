@@ -11,12 +11,12 @@ import sharedObject.RenderableHolder;
 
 public class ChessboardPane extends Canvas {
 
-    private static final int CELL_SIZE = 90;
-    private static final int OFFSET = 15;
+    private static final int CELL_SIZE = 80;
+    private static final int OFFSET = 10;
     private static final int PIECE_SIZE = 60;
 
     public ChessboardPane() {
-        super(720, 720);
+        super(640, 640);
         initialize();
     }
 
@@ -86,7 +86,7 @@ public class ChessboardPane extends Canvas {
             for (int j = 0; j < 8; j++) {
                 int posX = i * CELL_SIZE;
                 int posY = j * CELL_SIZE;
-                if (i % 2 == 0) {
+                if ((i + j) % 2 == 0) {
                     drawRectLightBrown(gc, posX, posY);
                 } else {
                     drawRectBrown(gc, posX, posY);
@@ -112,4 +112,30 @@ public class ChessboardPane extends Canvas {
         gc.drawImage(pieceImage, x, y, PIECE_SIZE, PIECE_SIZE);
     }
 
+
+    public void draw(GraphicsContext gc) {
+        updateBoard(GameLogic.getInstance());
+
+        // Draw the chessboard squares
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                int posX = i * CELL_SIZE;
+                int posY = j * CELL_SIZE;
+                if ((i + j) % 2 == 0) {
+                    drawRectLightBrown(gc, posX, posY);
+                } else {
+                    drawRectBrown(gc, posX, posY);
+                }
+            }
+        }
+        // Draw the chess pieces
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                ChessPiece piece = GameLogic.getInstance().getChessPieceAt(i, j);
+                if (piece != null) {
+                    setImageAt(piece, i, j);
+                }
+            }
+        }
+    }
 }

@@ -88,10 +88,10 @@ public class StartScreen extends BorderPane {
                     @Override
                     public void run() {
                         RenderableHolder.clickButton.play();
-                        toMainScreen();
+                        toMainScreen(gc);
                     }
                 });
-                toMainScreen();
+                toMainScreen(gc);
             }
         });
 
@@ -122,7 +122,7 @@ public class StartScreen extends BorderPane {
     }
 
 
-    public void toMainScreen(){
+    public void toMainScreen(GraphicsContext gc){
         MainScreenPane mainScreenPane = new MainScreenPane();
         Group group = new Group(mainScreenPane);
         scene = new Scene(group);
@@ -142,6 +142,7 @@ public class StartScreen extends BorderPane {
                     //TODO set Mainboard disable to false
                     stop();
                 }
+                //mainScreenPane.getGamePane().draw(gc);
             }
         };
         animationTimer.start();
