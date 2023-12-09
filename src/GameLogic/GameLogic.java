@@ -160,10 +160,10 @@ public class GameLogic {
     public static String getStringGameTime() {
         String minDigit;
         String secDigit;
-        if (gameTime/60>=10) minDigit=Integer.toString(gameTime/60);
-        else minDigit="0"+Integer.toString(gameTime/60);
-        if (gameTime%60>=10) secDigit=Integer.toString(gameTime%60);
-        else secDigit="0"+Integer.toString(gameTime%60);
-        return minDigit+" : "+secDigit;
+        if (gameTime / 60 >= 10) minDigit = Integer.toString(gameTime / 60);
+        else minDigit = "0" + Integer.toString(gameTime / 60);
+        if (gameTime % 60 >= 10) secDigit = Integer.toString(gameTime % 60);
+        else secDigit = "0" + Integer.toString(gameTime % 60);
+        return minDigit + " : " + secDigit;
     }
 }
