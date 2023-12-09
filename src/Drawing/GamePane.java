@@ -19,30 +19,31 @@ public class GamePane extends BorderPane implements IRenderable {
     private static Canvas xCoordinate;
     private static ChessboardPane chessboardPane;
 
-    public GamePane(){
+    public GamePane() {
         chessboardPane = new ChessboardPane();
         setPrefSize(816, 768);
         setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, null, null)));
 
-        yCoordinate=new Canvas(100,768);
+        yCoordinate = new Canvas(100, 768);
         setLeft(yCoordinate);
         drawYnum(yCoordinate.getGraphicsContext2D());
 
-        xCoordinate = new Canvas(816,45);
+        xCoordinate = new Canvas(816, 45);
         setTop(xCoordinate);
         drawXnum(xCoordinate.getGraphicsContext2D());
 
-        timerPane=new Canvas(100,768);
+        timerPane = new Canvas(100, 768);
         setRight(timerPane);
         drawTimerBar(timerPane.getGraphicsContext2D());
 
         setCenter(chessboardPane);
         chessboardPane.setTranslateY(-50);
-        GraphicsContext gc= chessboardPane.getGraphicsContext2D();
+        GraphicsContext gc = chessboardPane.getGraphicsContext2D();
         draw(gc);
 
         startAnimationLoop();
     }
+
     @Override
     public void draw(GraphicsContext gc) {
         GameLogic.getInstance();
@@ -65,7 +66,7 @@ public class GamePane extends BorderPane implements IRenderable {
         gc.setFont(Font.font("Impact", FontWeight.LIGHT, 40));
         gc.setFill(Color.BLACK);
         for (int y = 0; y < 8; y++) {
-            gc.fillText(Integer.toString(y), 80, 110+80*y , 30);
+            gc.fillText(Integer.toString(y), 80, 110 + 80 * y, 30);
         }
     }
 
@@ -73,7 +74,7 @@ public class GamePane extends BorderPane implements IRenderable {
         gc.setFont(Font.font("Impact", FontWeight.LIGHT, 40));
         gc.setFill(Color.BLACK);
         for (int x = 0; x < 8; x++) {
-            gc.fillText(Integer.toString(x), 168+80*x, 40, 30);
+            gc.fillText(Integer.toString(x), 168 + 80 * x, 40, 30);
         }
     }
 
@@ -93,7 +94,7 @@ public class GamePane extends BorderPane implements IRenderable {
         gc.fillRect(15, 14, 32, 640);
         //fill white bar
         gc.setFill(Color.WHITE);
-        gc.fillRect(15, 334-whiteBarHeight, 32, whiteBarHeight);
+        gc.fillRect(15, 334 - whiteBarHeight, 32, whiteBarHeight);
         //fill rect for black
         gc.setFill(Color.BLACK);
         gc.fillRect(15, 334, 32, blackBarHeight);
@@ -101,7 +102,7 @@ public class GamePane extends BorderPane implements IRenderable {
         gc.strokeRect(776, 48, 32, 720);
     }
 
-    private void drawTimer(GraphicsContext gc){
+    private void drawTimer(GraphicsContext gc) {
         gc.setFill(Color.BLACK);
         gc.setFont(Font.font("Impact", FontWeight.MEDIUM, 40));
 
@@ -125,7 +126,7 @@ public class GamePane extends BorderPane implements IRenderable {
         animation.start();
     }
 
-    public void resetGame(){
+    public static void resetGame() {
         GameLogic.getInstance().initializedBoard();
         GameLogic.getInstance().setTime_left_black(300);
         GameLogic.getInstance().setTime_left_black(300);

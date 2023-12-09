@@ -75,6 +75,10 @@ public class GameLogic {
         return instance;
     }
 
+    public static GameLogic resetInstance(){
+        return new GameLogic();
+    }
+
     public void nextPlayer() {
         currentPlayer = !currentPlayer;
     }

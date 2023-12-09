@@ -127,6 +127,7 @@ public class StartScreen extends BorderPane {
         Group group = new Group(mainScreenPane);
         scene = new Scene(group);
         RenderableHolder.getInstance().clear();
+        GameLogic.resetInstance();
         //TODO GameInstance.getInstance().start();
         Main.stage.setScene(scene);
 
@@ -140,7 +141,6 @@ public class StartScreen extends BorderPane {
                 if (GameLogic.getInstance().isGameEnd()) {
                     this.stop();
                 }
-                MainScreenPane.getGamePane().resetGame();
             }
         };
         animation.start();
