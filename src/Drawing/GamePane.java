@@ -27,6 +27,7 @@ public class GamePane extends BorderPane implements IRenderable {
         setLeft(yCoordinate);
         drawYnum(yCoordinate.getGraphicsContext2D());
 
+        xCoordinate = new Canvas(816,50);
         xCoordinate = new Canvas(816,45);
         setTop(xCoordinate);
         drawXnum(xCoordinate.getGraphicsContext2D());
@@ -78,13 +79,14 @@ public class GamePane extends BorderPane implements IRenderable {
         Color color = Color.web("#535353");
         gc.setLineWidth(3);
         GameLogic gameInstance = GameLogic.getInstance();
-        double whitePercentage = gameInstance.getTimeLeftWhite() / 300.0;
-        double blackPercentage = gameInstance.getTimeLeftBlack() / 300.0;
+        double whitePercentage = gameInstance.getTimeLeftWhite() / (double) gameInstance.getCurrent_game_time();
+        double blackPercentage = gameInstance.getTimeLeftBlack() / (double) gameInstance.getCurrent_game_time();
 
         double whiteBarHeight = 320 * whitePercentage;
         double blackBarHeight = 320 * blackPercentage;
         gc.setLineWidth(5);
         gc.setStroke(color);
+        
         //fill empty bar
         gc.setFill(Color.LIGHTGRAY);
         gc.fillRect(15, 14, 32, 640);
