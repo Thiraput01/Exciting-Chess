@@ -13,6 +13,8 @@ public class GameLogic {
     private long time_left_white;
     private long time_left_black;
     private static GameLogic instance = null;
+    private boolean isHighlighting;
+    private ChessPiece currentClickingPiece;
 
     public GameLogic() {
         setTime_left_black(300);
@@ -169,5 +171,21 @@ public class GameLogic {
         if (gameTime % 60 >= 10) secDigit = Integer.toString(gameTime % 60);
         else secDigit = "0" + Integer.toString(gameTime % 60);
         return minDigit + " : " + secDigit;
+    }
+
+    public boolean isHighlighting(){
+        return isHighlighting;
+    }
+
+    public void setHighlighting(boolean isHighlighting){
+        this.isHighlighting = isHighlighting;
+    }
+
+    public void setCurrentClickingPiece(ChessPiece currentClickingPiece){
+        this.currentClickingPiece = currentClickingPiece;
+    }
+
+    public ChessPiece getCurrentClickingPiece(){
+        return currentClickingPiece;
     }
 }

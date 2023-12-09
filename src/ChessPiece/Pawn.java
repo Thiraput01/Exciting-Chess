@@ -16,9 +16,11 @@ public class Pawn extends ChessPiece implements Movable {
     public boolean isValidMove(int toX, int toY) {
         if (!GameUtil.inRangeOfBoard(toX, toY)) return false;
         int direction = isWhite() ? 1 : -1;
-        if ((toX == getPosX() + 1 || toX == getPosX() - 1) && toY == getPosY() + direction && GameLogic.getInstance().getChessPieceAt(toX, toY) != null && GameLogic.getInstance().getChessPieceAt(toX, toY).isWhite() != isWhite())
+        if ((toX == getPosX() + 1 || toX == getPosX() - 1) && toY == getPosY() + direction
+                && GameLogic.getInstance().getChessPieceAt(toX, toY) != null
+                && GameLogic.getInstance().getChessPieceAt(toX, toY).isWhite() != isWhite())
             return true; // attacking diagonally upward
-        return toX == getPosX() && toY == getPosX() + direction;
+        return toX == getPosX() && toY == getPosY() + direction;
     }
 
     private String getImageURL(boolean isWhite) {
@@ -29,7 +31,7 @@ public class Pawn extends ChessPiece implements Movable {
         possibleMoves.clear();
         for (int i = 0; i < 8; i++) {
             for (int e = 0; e < 8; e++) {
-                if (isValidMove(i, e) && GameUtil.isClearPath(getPosX(),getPosY(),i,e,this))
+                if (isValidMove(i, e) && GameUtil.isClearPath(getPosX(), getPosY(), i, e, this))
                     possibleMoves.add(new ChessPosition(i, e));
             }
         }

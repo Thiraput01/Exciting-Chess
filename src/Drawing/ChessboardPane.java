@@ -1,12 +1,16 @@
 package Drawing;
 
-import ChessPiece.ChessPiece;
+import ChessPiece.*;
 import GameLogic.GameLogic;
+import javafx.event.EventHandler;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import sharedObject.RenderableHolder;
+
+import java.util.ArrayList;
 
 
 public class ChessboardPane extends Canvas {
@@ -18,6 +22,41 @@ public class ChessboardPane extends Canvas {
     public ChessboardPane() {
         super(640, 640);
         initialize();
+        this.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                double mouseX = mouseEvent.getX();
+                double mouseY = mouseEvent.getY();
+                int posX = changeToposX(mouseX);
+                int posY = changeToposY(mouseY);
+                GameLogic gameInstance = GameLogic.getInstance();
+                ChessPiece currentPiece = gameInstance.getChessPieceAt(posX, posY);
+
+
+                if(!GameLogic.getInstance().isHighlighting()){
+                    if (currentPiece != null) {
+                        ArrayList<ChessPosition> allPossibleMoves = currentPiece.getPossibleMoves();
+                        System.out.println(posX);
+                        System.out.println(posY);
+                        for (ChessPosition chessPosition : allPossibleMoves) {
+                            highlightMoves(getGraphicsContext2D(), chessPosition.getX(), chessPosition.getY());
+                        }
+                    }
+                    gameInstance.setHighlighting(true);
+                    gameInstance.setCurrentClickingPiece(currentPiece);
+                }else{
+                    currentPiece = gameInstance.getCurrentClickingPiece();
+                    currentPiece.move(posX, posY);
+                    updateBoard(GameLogic.getInstance());
+
+                    removePieceAt(currentPiece.getPosX(), currentPiece.getPosY());
+                    setImageAt(currentPiece, posX, posY);
+
+                    GameLogic.getInstance().setHighlighting(false);
+                    gameInstance.setCurrentClickingPiece(null);
+                }
+            }
+        });
     }
 
     public void drawRectBrown(GraphicsContext gc, int posX, int posY) {
@@ -30,12 +69,12 @@ public class ChessboardPane extends Canvas {
         gc.fillRect(posX, posY, CELL_SIZE, CELL_SIZE);
     }
 
-    public int changeToposX(int mouseX) {
-        return mouseX / CELL_SIZE;
+    public int changeToposX(double mouseX) {
+        return (int) (mouseX / CELL_SIZE);
     }
 
-    public int changeToposY(int mouseY) {
-        return mouseY / CELL_SIZE;
+    public int changeToposY(double mouseY) {
+        return (int) (mouseY / CELL_SIZE);
     }
 
     public void initialize() {
@@ -104,6 +143,10 @@ public class ChessboardPane extends Canvas {
         }
     }
 
+    public void removePieceAt(int posX, int posY){
+        getGraphicsContext2D().clearRect(posX, posY, PIECE_SIZE, PIECE_SIZE);
+    }
+
     public void setImageAt(ChessPiece piece, int posX, int posY) {
         int x = posX * CELL_SIZE + OFFSET;
         int y = posY * CELL_SIZE + OFFSET;
@@ -137,5 +180,12 @@ public class ChessboardPane extends Canvas {
                 }
             }
         }
+    }
+
+    private void highlightMoves(GraphicsContext gc, int posX, int posY) {
+        gc.setFill(Color.LIGHTGREEN);
+        int x = posX * CELL_SIZE;
+        int y = posY * CELL_SIZE;
+        gc.fillRect(x, y , CELL_SIZE, CELL_SIZE);
     }
 }

@@ -153,5 +153,10 @@ public abstract class ChessPiece implements Movable {
             System.exit(0);
         }
     });*/
+
+    public ArrayList<ChessPosition> getPossibleMoves() {
+        setCurrentAllPossibleMoves();
+        return possibleMoves;
+    }
 }
 
