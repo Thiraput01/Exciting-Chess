@@ -125,5 +125,11 @@ public class GamePane extends BorderPane implements IRenderable {
         animation.start();
     }
 
+    public void resetGame(){
+        GameLogic.getInstance().initializedBoard();
+        GameLogic.getInstance().setTime_left_black(300);
+        GameLogic.getInstance().setTime_left_black(300);
+        GameLogic.setCurrent_game_time(0);
+    }
 }
 
