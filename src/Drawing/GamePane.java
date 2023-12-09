@@ -19,7 +19,7 @@ public class GamePane extends BorderPane implements IRenderable {
         setPrefSize(816, 768);
         setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, null, null)));
         setCenter(chessboardPane);
-
+        setCenter(chessboardPane);
     }
     @Override
     public void draw(GraphicsContext gc) {
@@ -102,3 +102,4 @@ public class GamePane extends BorderPane implements IRenderable {
     }
 
 }
+
