@@ -1,6 +1,7 @@
 package Drawing;
 
 import GameLogic.GameLogic;
+import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Background;
@@ -40,6 +41,8 @@ public class GamePane extends BorderPane implements IRenderable {
         chessboardPane.setTranslateY(-50);
         GraphicsContext gc= chessboardPane.getGraphicsContext2D();
         draw(gc);
+
+        startAnimationLoop();
     }
     @Override
     public void draw(GraphicsContext gc) {
@@ -75,12 +78,12 @@ public class GamePane extends BorderPane implements IRenderable {
         }
     }
 
-    private void drawTimerBar(GraphicsContext gc) {
+    protected static void drawTimerBar(GraphicsContext gc) {
         Color color = Color.web("#535353");
         gc.setLineWidth(3);
         GameLogic gameInstance = GameLogic.getInstance();
-        double whitePercentage = gameInstance.getTimeLeftWhite() / (double) gameInstance.getCurrent_game_time();
-        double blackPercentage = gameInstance.getTimeLeftBlack() / (double) gameInstance.getCurrent_game_time();
+        double whitePercentage = gameInstance.getTimeLeftWhite() / 300.0;
+        double blackPercentage = gameInstance.getTimeLeftBlack() / 300.0;
 
         double whiteBarHeight = 320 * whitePercentage;
         double blackBarHeight = 320 * blackPercentage;
@@ -112,4 +115,17 @@ public class GamePane extends BorderPane implements IRenderable {
         gc.fillText(timeLeftBlack, 588, 760);
     }
 
+    private void startAnimationLoop() {
+        AnimationTimer animation = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                // Update the timer values and redraw the timer bar
+                GameLogic.getInstance().updateGameTime();
+                drawTimerBar(timerPane.getGraphicsContext2D());
+            }
+        };
+        animation.start();
+    }
+
 }
+
