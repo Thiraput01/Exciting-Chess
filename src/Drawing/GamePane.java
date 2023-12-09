@@ -111,4 +111,3 @@ public class GamePane extends BorderPane implements IRenderable {
     }
 
 }
-

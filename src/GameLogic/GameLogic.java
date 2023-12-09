@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class GameLogic {
     private ArrayList<ArrayList<ChessPiece>> board;
     private boolean currentPlayer; //true for white
-    private static long lastTimeTriggered=-1;
+    private static long lastTimeTriggered = -1;
     private static long currentTime;
     private static int gameTime;
     private long time_left_white;
@@ -141,14 +141,15 @@ public class GameLogic {
 
     }
 
-    public  void setCurrent_game_time(long time){
-        currentTime=time;
+    public static void setCurrent_game_time(long time) {
+        currentTime = time;
     }
 
     public long getCurrent_game_time() {
         return gameTime;
     }
-    public long getTimeLeft(boolean isWhite){
-        return isWhite? time_left_white:time_left_black;
+
+    public long getTimeLeft(boolean isWhite) {
+        return isWhite ? time_left_white : time_left_black;
     }
 }
