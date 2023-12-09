@@ -132,20 +132,17 @@ public class StartScreen extends BorderPane {
 
         mainScreenPane.requestFocus();
 
-        AnimationTimer animationTimer = new AnimationTimer() {
-            @Override
-            public void handle(long l) {
-                GameLogic.getInstance().setCurrent_game_time(l);
+        AnimationTimer animation = new AnimationTimer() {
+            public void handle(long now) {
+                GameLogic.setCurrent_game_time(now);
+                GameLogic.getInstance().updateGameTime();
                 RenderableHolder.getInstance().update();
-                if(GameLogic.getInstance().isGameEnd()){
-                    //TODO set description to "Player.. win"
-                    //TODO set Mainboard disable to false
-                    stop();
+                if (GameLogic.getInstance().isGameEnd()) {
+                    this.stop();
                 }
-                //mainScreenPane.getGamePane().draw(gc);
             }
         };
-        animationTimer.start();
+        animation.start();
     }
 }
 

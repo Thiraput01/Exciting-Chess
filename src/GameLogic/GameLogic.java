@@ -141,7 +141,7 @@ public class GameLogic {
 
     }
 
-    public void setCurrent_game_time(long time) {
+    public static void setCurrent_game_time(long time) {
         currentTime = time;
     }
 
