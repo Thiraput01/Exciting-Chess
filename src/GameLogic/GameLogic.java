@@ -6,16 +6,17 @@ import java.util.ArrayList;
 
 public class GameLogic {
     private ArrayList<ArrayList<ChessPiece>> board;
-    private boolean currentPlayer;
-
-    private long current_game_time;
+    private boolean currentPlayer; //true for white
+    private static long lastTimeTriggered=-1;
+    private static long currentTime;
+    private static int gameTime;
     private long time_left_white;
     private long time_left_black;
     private static GameLogic instance = null;
 
     public GameLogic() {
-        setTime_left_black(300000);
-        setTime_left_white(300000);
+        setTime_left_black(300);
+        setTime_left_white(300);
         currentPlayer = true;
         initializedBoard();
     }
@@ -129,12 +130,20 @@ public class GameLogic {
         this.time_left_black = time_left_black;
     }
 
-    public void setCurrent_game_time(long current_game_time) {
-        this.current_game_time = current_game_time;
+    public void updateGameTime() {
+        lastTimeTriggered = (lastTimeTriggered < 0 ? currentTime : lastTimeTriggered);
+        if (currentTime - lastTimeTriggered >= 1000000000) {
+            gameTime++;
+            lastTimeTriggered = currentTime;
+            if (currentPlayer) time_left_white--;
+            else time_left_black--;
+        }
+
     }
 
+
     public long getCurrent_game_time() {
-        return current_game_time;
+        return gameTime;
     }
     public long getTimeLeft(boolean isWhite){
         return isWhite? time_left_white:time_left_black;
