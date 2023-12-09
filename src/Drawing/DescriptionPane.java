@@ -87,6 +87,7 @@ public class DescriptionPane extends BorderPane {
         StartScreen startScreen = new StartScreen();
         Group group = new Group(startScreen);
         scene = new Scene(group);
+
         RenderableHolder.getInstance().clear();
         Main.stage.setScene(scene);
         startScreen.requestFocus();

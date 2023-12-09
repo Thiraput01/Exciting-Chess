@@ -8,7 +8,7 @@ public class GameLogic {
     private ArrayList<ArrayList<ChessPiece>> board;
     private boolean currentPlayer; //true for white
     private static long lastTimeTriggered = -1;
-    private static long currentTime;
+    protected static long currentTime;
     private static int gameTime;
     private long time_left_white;
     private long time_left_black;
@@ -151,5 +151,9 @@ public class GameLogic {
 
     public long getTimeLeft(boolean isWhite) {
         return isWhite ? time_left_white : time_left_black;
+    }
+
+    public static void setCurrentTime(long currentTime) {
+        GameLogic.currentTime = currentTime;
     }
 }

@@ -140,6 +140,7 @@ public class StartScreen extends BorderPane {
                 if (GameLogic.getInstance().isGameEnd()) {
                     this.stop();
                 }
+                MainScreenPane.getGamePane().resetGame();
             }
         };
         animation.start();
