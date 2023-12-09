@@ -24,7 +24,7 @@ public class GamePane extends BorderPane implements IRenderable {
         yCoordinate=new Canvas(100,768);
         setLeft(yCoordinate);
         drawYnum(yCoordinate.getGraphicsContext2D());
-        xCoordinate = new Canvas(816,50);
+        xCoordinate = new Canvas(816,45);
         setTop(xCoordinate);
         drawXnum(xCoordinate.getGraphicsContext2D());
         setCenter(chessboardPane);
