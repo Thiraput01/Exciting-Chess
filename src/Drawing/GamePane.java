@@ -20,6 +20,8 @@ public class GamePane extends BorderPane implements IRenderable {
         setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, null, null)));
         setCenter(chessboardPane);
         setCenter(chessboardPane);
+        GraphicsContext gc= chessboardPane.getGraphicsContext2D();
+        draw(gc);
     }
     @Override
     public void draw(GraphicsContext gc) {
