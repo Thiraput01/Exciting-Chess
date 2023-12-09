@@ -13,29 +13,38 @@ import sharedObject.IRenderable;
 
 public class GamePane extends BorderPane implements IRenderable {
 
-    private Canvas yCoordinate;
-    private Canvas xCoordinate;
-    private ChessboardPane chessboardPane;
+    private static Canvas timerPane;
+    private static Canvas yCoordinate;
+    private static Canvas xCoordinate;
+    private static ChessboardPane chessboardPane;
 
     public GamePane(){
         chessboardPane = new ChessboardPane();
         setPrefSize(816, 768);
         setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, null, null)));
+
         yCoordinate=new Canvas(100,768);
         setLeft(yCoordinate);
         drawYnum(yCoordinate.getGraphicsContext2D());
+
         xCoordinate = new Canvas(816,45);
         setTop(xCoordinate);
         drawXnum(xCoordinate.getGraphicsContext2D());
+
+        timerPane=new Canvas(100,768);
+        setRight(timerPane);
+        drawTimerBar(timerPane.getGraphicsContext2D());
+
         setCenter(chessboardPane);
+        chessboardPane.setTranslateY(-50);
         GraphicsContext gc= chessboardPane.getGraphicsContext2D();
         draw(gc);
     }
     @Override
     public void draw(GraphicsContext gc) {
         GameLogic.getInstance();
-        drawTimerBar(gc);
-        drawTimer(gc);
+        //drawTimerBar(gc);
+        //drawTimer(gc);
     }
 
     @Override
@@ -72,20 +81,19 @@ public class GamePane extends BorderPane implements IRenderable {
         double whitePercentage = gameInstance.getTimeLeftWhite() / (double) gameInstance.getCurrent_game_time();
         double blackPercentage = gameInstance.getTimeLeftBlack() / (double) gameInstance.getCurrent_game_time();
 
-        double whiteBarHeight = 360 * whitePercentage;
-        double blackBarHeight = 360 * blackPercentage;
-        double calBlackBarPos = 48 + 360 - (360 * blackPercentage);
+        double whiteBarHeight = 320 * whitePercentage;
+        double blackBarHeight = 320 * blackPercentage;
         gc.setLineWidth(5);
         gc.setStroke(color);
         //fill empty bar
-        gc.setFill(Color.GRAY);
-        gc.fillRect(776, 48, 32, 720);
+        gc.setFill(Color.LIGHTGRAY);
+        gc.fillRect(15, 14, 32, 640);
         //fill white bar
         gc.setFill(Color.WHITE);
-        gc.fillRect(776, 408, 32, whiteBarHeight);
-        //fillrect for black
+        gc.fillRect(15, 334-whiteBarHeight, 32, whiteBarHeight);
+        //fill rect for black
         gc.setFill(Color.BLACK);
-        gc.fillRect(776, calBlackBarPos, 32, blackBarHeight);
+        gc.fillRect(15, 334, 32, blackBarHeight);
         //set border
         gc.strokeRect(776, 48, 32, 720);
     }

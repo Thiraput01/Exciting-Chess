@@ -147,5 +147,11 @@ public abstract class ChessPiece implements Movable {
         }
         return false; //invalid Move,new input needed
     }
+    /*this.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent mouseEvent) {
+            System.exit(0);
+        }
+    });*/
 }
 
