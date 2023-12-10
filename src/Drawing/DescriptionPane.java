@@ -58,6 +58,12 @@ public class DescriptionPane extends BorderPane {
                 menuText.setTranslateX(0);
             }
         });
+        menuText.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                toStartScreen();
+            }
+        });
 
         Text exitText = new Text("Exit");
         exitText.setFont(menu_exitFont);
@@ -78,7 +84,7 @@ public class DescriptionPane extends BorderPane {
         exitText.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                toStartScreen();
+                System.exit(0);
             }
         });
 

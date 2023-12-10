@@ -89,6 +89,7 @@ public class StartScreen extends BorderPane {
                     public void run() {
                         RenderableHolder.clickButton.play();
                         toMainScreen(gc);
+                        GameLogic.resetInstance();
                     }
                 });
                 toMainScreen(gc);

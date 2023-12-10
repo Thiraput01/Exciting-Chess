@@ -27,7 +27,7 @@ public class GameLogic {
         currentPlayer = true;
         //initialized chess Board();
         initializedBoard();
-
+        gameTime=0;
     }
 
     public void initializedBoard() {
@@ -84,8 +84,8 @@ public class GameLogic {
         return instance;
     }
 
-    public static GameLogic resetInstance() {
-        return new GameLogic();
+    public static void resetInstance() {
+        instance=new GameLogic();
     }
 
     public void nextPlayer() {
