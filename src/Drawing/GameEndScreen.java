@@ -88,6 +88,7 @@ public class GameEndScreen extends StackPane {
             public void handle(MouseEvent mouseEvent) {
                 exitText.setOpacity(1);
                 exitText.setTranslateX(0);
+                exitText.setFill(Color.RED);
             }
         });
 
@@ -96,6 +97,7 @@ public class GameEndScreen extends StackPane {
             public void handle(MouseEvent mouseEvent) {
                 exitText.setOpacity(0.7);
                 exitText.setTranslateX(2);
+                exitText.setFill(Color.WHITE);
             }
         });
 
