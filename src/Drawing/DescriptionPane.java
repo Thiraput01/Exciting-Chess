@@ -37,7 +37,7 @@ public class DescriptionPane extends BorderPane {
         Font menu_exitFont = Font.font("Bauhaus 93", FontWeight.MEDIUM, 50);
         Font descriptionFont = Font.font("Bauhaus 93", FontWeight.EXTRA_LIGHT, 50);
         String current;
-        Text menuText = new Text("Back");
+        Text menuText = new Text("BACK");
         descriptionText = new Text("Start Game!\n" + "White turn");
 
         menuText.setFont(menu_exitFont);
@@ -68,7 +68,7 @@ public class DescriptionPane extends BorderPane {
             }
         });
 
-        Text exitText = new Text("Exit");
+        Text exitText = new Text("EXIT");
         exitText.setFont(menu_exitFont);
         exitText.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
