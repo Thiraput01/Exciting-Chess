@@ -1,5 +1,6 @@
 package ChessPiece;
 
+import GameLogic.GameLogic;
 import GameLogic.GameUtil;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ public class Bishop extends ChessPiece implements Movable {
 
     public boolean isValidMove(int toX, int toY) {
         if (!GameUtil.inRangeOfBoard(toX, toY)) return false;
+        if (GameLogic.getInstance().getChessPieceAt(toX,toY)!=null && GameLogic.getInstance().getChessPieceAt(toX,toY).isWhite()==isWhite()) return false;
         return Math.abs(toX - getPosX()) != 0 && Math.abs(toX - getPosX()) == Math.abs(toY - getPosY());
     }
 

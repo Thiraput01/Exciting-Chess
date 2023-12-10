@@ -15,6 +15,7 @@ public class Pawn extends ChessPiece implements Movable {
 
     public boolean isValidMove(int toX, int toY) {
         if (!GameUtil.inRangeOfBoard(toX, toY)) return false;
+        if (GameLogic.getInstance().getChessPieceAt(toX,toY)!=null && GameLogic.getInstance().getChessPieceAt(toX,toY).isWhite()==isWhite()) return false;
         int direction = isWhite() ? 1 : -1;
         if ((toX == getPosX() + 1 || toX == getPosX() - 1) && toY == getPosY() + direction
                 && GameLogic.getInstance().getChessPieceAt(toX, toY) != null

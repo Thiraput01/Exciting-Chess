@@ -1,5 +1,6 @@
 package ChessPiece;
 
+import GameLogic.GameLogic;
 import GameLogic.GameUtil;
 
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public class King extends ChessPiece implements Movable {
     @Override
     public boolean isValidMove(int toX, int toY) { //valid by general rules
         if (!GameUtil.inRangeOfBoard(toX, toY) || (toX==getPosX() && toY==getPosY())) return false;
+        if (GameLogic.getInstance().getChessPieceAt(toX,toY)!=null && GameLogic.getInstance().getChessPieceAt(toX,toY).isWhite()==isWhite()) return false; //the position contains a same team piece
         int dX = Math.abs(toX - getPosX());
         int dY = Math.abs(toY - getPosY());
         return (dX <= 1 && dY <= 1);

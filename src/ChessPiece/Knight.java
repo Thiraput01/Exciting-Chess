@@ -16,6 +16,7 @@ public class Knight extends ChessPiece implements Movable {
 
     public boolean isValidMove(int toX, int toY) {
         if (!GameUtil.inRangeOfBoard(toX, toY)) return false;
+        if (GameLogic.getInstance().getChessPieceAt(toX,toY)!=null && GameLogic.getInstance().getChessPieceAt(toX,toY).isWhite()==isWhite()) return false;
         if (Math.abs(toX - getPosX()) == 1) {
             return Math.abs(toY - getPosY()) == 2;
         } else if (Math.abs(toX - getPosX()) == 2) {
