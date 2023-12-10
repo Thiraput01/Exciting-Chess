@@ -13,14 +13,18 @@ public class GameLogic {
     private long time_left_white;
     private long time_left_black;
     private static GameLogic instance = null;
-    private boolean isHighlighting;
+    private boolean isHighlighting = false;
     private ChessPiece currentClickingPiece;
 
     public GameLogic() {
+        //start timer for both black and white
         setTime_left_black(300);
         setTime_left_white(300);
+        //set current player to white(true)
         currentPlayer = true;
+        //initialized chess Board();
         initializedBoard();
+
     }
 
     public void initializedBoard() {
@@ -77,7 +81,7 @@ public class GameLogic {
         return instance;
     }
 
-    public static GameLogic resetInstance(){
+    public static GameLogic resetInstance() {
         return new GameLogic();
     }
 
@@ -147,6 +151,10 @@ public class GameLogic {
 
     }
 
+    public ArrayList<ArrayList<ChessPiece>> getBoard() {
+        return board;
+    }
+
     public static void setCurrent_game_time(long time) {
         currentTime = time;
     }
@@ -173,19 +181,23 @@ public class GameLogic {
         return minDigit + " : " + secDigit;
     }
 
-    public boolean isHighlighting(){
+    public boolean isHighlighting() {
         return isHighlighting;
     }
 
-    public void setHighlighting(boolean isHighlighting){
+    public void setHighlighting(boolean isHighlighting) {
         this.isHighlighting = isHighlighting;
     }
 
-    public void setCurrentClickingPiece(ChessPiece currentClickingPiece){
+    public void setCurrentClickingPiece(ChessPiece currentClickingPiece) {
         this.currentClickingPiece = currentClickingPiece;
     }
 
-    public ChessPiece getCurrentClickingPiece(){
+    public ChessPiece getCurrentClickingPiece() {
         return currentClickingPiece;
+    }
+
+    public boolean getCurrentPlayer() {
+        return currentPlayer;
     }
 }
