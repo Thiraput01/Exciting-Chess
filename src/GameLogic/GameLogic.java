@@ -106,18 +106,35 @@ public class GameLogic {
     public boolean isGameEnd() {
         boolean blackKingFound = false;
         boolean whiteKingFound = false;
+
+        // Iterate through the board
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 ChessPiece currentPiece = board.get(i).get(j);
+
+                // Check if the current piece is a King
                 if (currentPiece instanceof King) {
-                    if (currentPiece.isWhite()) whiteKingFound = true;
-                    else blackKingFound = true;
+                    // Update flags based on the color of the King
+                    if (currentPiece.isWhite()) {
+                        whiteKingFound = true;
+                    } else {
+                        blackKingFound = true;
+                    }
                 }
             }
         }
-        whiteWon = (!blackKingFound || !whiteKingFound || time_left_black <= 0 || time_left_white <= 0) ? (whiteKingFound && time_left_white>0) : false; //if ends,whiteWon is when white king found
-        return !blackKingFound || !whiteKingFound || time_left_black <= 0 || time_left_white <= 0;
+
+        // Check for different end game conditions
+        boolean whiteWins = !blackKingFound || time_left_black <= 0 || time_left_white <= 0;
+        boolean blackWins = !whiteKingFound || time_left_black <= 0 || time_left_white <= 0;
+
+        // Update whiteWon based on the conditions for white winning
+        whiteWon = whiteWins && whiteKingFound && time_left_white > 0;
+
+        // Return true if either player wins
+        return whiteWins || blackWins;
     }
+
 
     public String getTime_left_white() {
         return time_left_white / 60 + " : " + time_left_white % 60;

@@ -49,7 +49,7 @@ public class DescriptionPane extends BorderPane {
         menuText.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                menuText.setOpacity(0.7);
+                menuText.setFill(Color.GREEN);
                 menuText.setTranslateX(-2);
             }
         });
@@ -57,7 +57,7 @@ public class DescriptionPane extends BorderPane {
         menuText.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                menuText.setOpacity(1);
+                menuText.setFill(Color.BLACK);
                 menuText.setTranslateX(0);
             }
         });

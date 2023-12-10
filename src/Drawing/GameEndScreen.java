@@ -17,6 +17,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import sharedObject.RenderableHolder;
 
 public class GameEndScreen extends StackPane {
@@ -35,11 +36,13 @@ public class GameEndScreen extends StackPane {
         vBox.setAlignment(Pos.CENTER);
 
         boolean whiteWon = GameLogic.isWhiteWon();
-        String endGameMessage = whiteWon ? "White Won!\n" : "Black Won!\n";
-        endGameMessage += "Congratulation!";
+        String endGameMessage = "Congratulation!\n";
+        endGameMessage += whiteWon ? "White Won!" : "Black Won!";
+
         Text endGameMessageText = new Text(endGameMessage);
         endGameMessageText.setFill(Color.WHITE);
         endGameMessageText.setFont(Font.font("Bauhaus 93", FontWeight.MEDIUM, 100));
+        endGameMessageText.setTextAlignment(TextAlignment.CENTER);
 
         Text exitText = new Text("-EXIT");
         exitText.setFill(Color.WHITE);
@@ -50,11 +53,12 @@ public class GameEndScreen extends StackPane {
         newGameText.setFont(Font.font("Bauhaus 93", FontWeight.MEDIUM, 50));
 
         vBox.getChildren().addAll(endGameMessageText, exitText, newGameText);
+        getChildren().add(vBox);
         setAlignment(vBox,Pos.CENTER);
         newGameText.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                newGameText.setOpacity(1);
+                newGameText.setFill(Color.GREEN);
                 newGameText.setTranslateX(0);
             }
         });
@@ -62,7 +66,7 @@ public class GameEndScreen extends StackPane {
         newGameText.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                newGameText.setOpacity(0.7);
+                newGameText.setFill(Color.WHITE);
                 newGameText.setTranslateX(2);
             }
         });
@@ -86,7 +90,6 @@ public class GameEndScreen extends StackPane {
         exitText.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                exitText.setOpacity(1);
                 exitText.setTranslateX(0);
                 exitText.setFill(Color.RED);
             }
@@ -95,7 +98,6 @@ public class GameEndScreen extends StackPane {
         exitText.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                exitText.setOpacity(0.7);
                 exitText.setTranslateX(2);
                 exitText.setFill(Color.WHITE);
             }

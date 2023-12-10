@@ -140,7 +140,13 @@ public class StartScreen extends BorderPane {
                 GameLogic.getInstance().updateGameTime();
                 RenderableHolder.getInstance().update();
                 if (GameLogic.getInstance().isGameEnd()) {
+                    System.out.println("Game should end here");
                     this.stop();
+                    GameEndScreen gameEndScreen = new GameEndScreen();
+                    Group group1 = new Group(gameEndScreen);
+                    scene = new Scene(group1);
+                    RenderableHolder.getInstance().clear();
+                    Main.stage.setScene(scene);
                 }
             }
         };
