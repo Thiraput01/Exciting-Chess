@@ -20,7 +20,7 @@ public class Pawn extends ChessPiece implements Movable {
                 && GameLogic.getInstance().getChessPieceAt(toX, toY) != null
                 && GameLogic.getInstance().getChessPieceAt(toX, toY).isWhite() != isWhite())
             return true; // attacking diagonally upward
-        return toX == getPosX() && toY == getPosY() + direction;
+        return (GameLogic.getInstance().getChessPieceAt(toX, toY) == null) && (toX == getPosX()) && (toY == getPosY() + direction); //moving normally
     }
 
     private String getImageURL(boolean isWhite) {

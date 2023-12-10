@@ -19,10 +19,10 @@ public class King extends ChessPiece implements Movable {
 
     @Override
     public boolean isValidMove(int toX, int toY) { //valid by general rules
-        if (!GameUtil.inRangeOfBoard(toX, toY)) return false;
+        if (!GameUtil.inRangeOfBoard(toX, toY) || (toX==getPosX() && toY==getPosY())) return false;
         int dX = Math.abs(toX - getPosX());
         int dY = Math.abs(toY - getPosY());
-        return (dX == 1 || dY == 1);
+        return (dX <= 1 && dY <= 1);
     }
 
 

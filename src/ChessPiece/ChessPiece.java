@@ -123,16 +123,19 @@ public abstract class ChessPiece implements Movable {
             int oldX = getPosX();  // Store the old X position
             int oldY = getPosY();  // Store the old Y position
 
-            if (GameLogic.getInstance().getChessPieceAt(x, y) == null) {
+            if (GameLogic.getInstance().getChessPieceAt(x, y) == null) { //moving normally
+                GameLogic.getInstance().setChessPieceAt(getPosX(),getPosY(),null);
                 RenderableHolder.moveChess.play();
                 setPosY(y);
                 setPosX(x);
+                GameLogic.getInstance().setChessPieceAt(getPosX(),getPosY(),this);
                 GameLogic.getInstance().setCurrentDesc(current + "moved from " + oldX + " " + oldY + " to " + getPosX() + " " + getPosY());
             } else {
                 // attack
                 if (GameUtil.attack(current, GameLogic.getInstance().getChessPieceAt(x, y), x, y)) {
                     // successfully attacked
                     RenderableHolder.captureChess.play();
+                    GameLogic.getInstance().setChessPieceAt(getPosX(),getPosY(),null);
                     setPosY(y);
                     setPosX(x);
                     GameLogic.getInstance().setCurrentDesc(current + "from " + oldX + " " + oldY + "killed an enemy at " + getPosX() + " " + getPosY());
@@ -140,8 +143,8 @@ public abstract class ChessPiece implements Movable {
                     // failed to attack, killed
                     RenderableHolder.captureFailed.play();
                     GameLogic.getInstance().setChessPieceAt(oldX, oldY, null);
-                    setPosX(-1);  // Restore the original X position
-                    setPosY(-1);  // Restore the original Y position
+                    setPosX(-10);  // Restore the original X position
+                    setPosY(-10);  // Restore the original Y position
                     GameLogic.getInstance().setCurrentDesc(current + "from" + oldX + oldY + "failed to kill, got revenged to death.");
                 }
             }

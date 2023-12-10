@@ -18,10 +18,10 @@ public class GameUtil {
     public static boolean attack(ChessPiece attacker, ChessPiece defender, int x, int y) {
         if (successAttack(attacker.getRate(), defender.getRate())) {
             GameLogic.getInstance().setChessPieceAt(x, y, attacker); //set new position
-            defender.setPosX(-1);
-            defender.setPosY(-1);
+            defender.setPosX(-10);
+            defender.setPosY(-10);
             return true;
-        } else {
+        } else { //got revenged
             return false;
         }
     }
