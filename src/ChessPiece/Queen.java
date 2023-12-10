@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Queen extends ChessPiece implements Movable {
     public Queen(int x, int y, boolean isWhite) {
         super(x, y, isWhite);
-        setRate(0.9);
+        setRate(2);
         setPieceUrl(getImageURL(isWhite));
         possibleMoves = new ArrayList<>();
     }
