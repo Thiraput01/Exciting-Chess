@@ -40,16 +40,16 @@ public class GameEndScreen extends StackPane {
         endGameMessage += whiteWon ? "White Won!" : "Black Won!";
 
         Text endGameMessageText = new Text(endGameMessage);
-        endGameMessageText.setFill(Color.WHITE);
+        endGameMessageText.setFill(Color.web("fcc200"));
         endGameMessageText.setFont(Font.font("Bauhaus 93", FontWeight.MEDIUM, 100));
         endGameMessageText.setTextAlignment(TextAlignment.CENTER);
 
         Text exitText = new Text("-EXIT");
-        exitText.setFill(Color.WHITE);
+        exitText.setFill(Color.web("fcc200"));
         exitText.setFont(Font.font("Bauhaus 93", FontWeight.MEDIUM, 50));
 
         Text newGameText = new Text("-NEW GAME");
-        newGameText.setFill(Color.WHITE);
+        newGameText.setFill(Color.web("fcc200"));
         newGameText.setFont(Font.font("Bauhaus 93", FontWeight.MEDIUM, 50));
 
         vBox.getChildren().addAll(endGameMessageText, exitText, newGameText);
@@ -58,7 +58,7 @@ public class GameEndScreen extends StackPane {
         newGameText.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                newGameText.setFill(Color.GREEN);
+                newGameText.setFill(Color.web("32CD32"));
                 newGameText.setTranslateX(0);
             }
         });
@@ -66,7 +66,7 @@ public class GameEndScreen extends StackPane {
         newGameText.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                newGameText.setFill(Color.WHITE);
+                newGameText.setFill(Color.web("fcc200"));
                 newGameText.setTranslateX(2);
             }
         });
@@ -99,7 +99,7 @@ public class GameEndScreen extends StackPane {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 exitText.setTranslateX(2);
-                exitText.setFill(Color.WHITE);
+                exitText.setFill(Color.web("fcc200"));
             }
         });
 

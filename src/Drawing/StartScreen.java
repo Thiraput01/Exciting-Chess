@@ -51,13 +51,13 @@ public class StartScreen extends BorderPane {
         Text playText = new Text("-PLAY");
         playText.setFont(playFont);
         playText.setFill(Color.WHITE);
-        playText.setOpacity(0.7);
+        playText.setOpacity(1);
         playText.setTranslateX(2);
 
         Text exitText = new Text("-EXIT");
         exitText.setFont(exitFont);
         exitText.setFill(Color.WHITE);
-        exitText.setOpacity(0.7);
+        exitText.setOpacity(1);
         exitText.setTranslateX(2);
 
         //add components to Vbox
@@ -68,7 +68,7 @@ public class StartScreen extends BorderPane {
         playText.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                playText.setOpacity(1);
+                playText.setFill(Color.web("32CD32"));
                 playText.setTranslateX(0);
             }
         });
@@ -76,7 +76,7 @@ public class StartScreen extends BorderPane {
         playText.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                playText.setOpacity(0.7);
+                playText.setFill(Color.WHITE);
                 playText.setTranslateX(2);
             }
         });
@@ -100,7 +100,7 @@ public class StartScreen extends BorderPane {
         exitText.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                exitText.setOpacity(1);
+                exitText.setFill(Color.RED);
                 exitText.setTranslateX(0);
             }
         });
@@ -108,7 +108,7 @@ public class StartScreen extends BorderPane {
         exitText.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                exitText.setOpacity(0.7);
+                exitText.setFill(Color.WHITE);
                 exitText.setTranslateX(2);
             }
         });

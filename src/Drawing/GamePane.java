@@ -23,7 +23,7 @@ public class GamePane extends BorderPane implements IRenderable {
     public GamePane() {
         chessboardPane = new ChessboardPane();
         setPrefSize(816, 768);
-        setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, null, null)));
+        setBackground(new Background(new BackgroundFill(Color.web("5C4033"), null, null)));
 
         yCoordinate = new Canvas(100, 640);
         drawYnum(yCoordinate.getGraphicsContext2D());
@@ -72,7 +72,7 @@ public class GamePane extends BorderPane implements IRenderable {
 
     private void drawYnum(GraphicsContext gc) {
         gc.setFont(Font.font("Bauhaus 93", FontWeight.MEDIUM, 40));
-        gc.setFill(Color.BLACK);
+        gc.setFill(Color.web("F3E5AB"));
         for (int y = 0; y < 8; y++) {
             gc.fillText(Integer.toString(y), 70, 55 + 80 * y, 30);
         }
@@ -80,7 +80,7 @@ public class GamePane extends BorderPane implements IRenderable {
 
     private void drawXnum(GraphicsContext gc) {
         gc.setFont(Font.font("Bauhaus 93", FontWeight.MEDIUM, 40));
-        gc.setFill(Color.BLACK);
+        gc.setFill(Color.web("F3E5AB"));
         for (int x = 0; x < 8; x++) {
             gc.fillText(Integer.toString(x), 130 + 80 * x, 40, 30);
         }
@@ -123,7 +123,7 @@ public class GamePane extends BorderPane implements IRenderable {
 
     private void drawGameTime(GraphicsContext gc) {
         gc.setFont(Font.font("Bauhaus 93", FontWeight.MEDIUM, 40));
-        gc.setFill(Color.BLACK);
+        gc.setFill(Color.web("F3E5AB"));
         gc.clearRect(0, 0, 816, 100);
         gc.fillText(GameLogic.getStringGameTime(), 366, 50, 10000);
     }

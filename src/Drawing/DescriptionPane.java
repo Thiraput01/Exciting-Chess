@@ -29,7 +29,7 @@ public class DescriptionPane extends BorderPane {
     public DescriptionPane() {
         super();
         setPrefSize(545, 768);
-        setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, null, null)));
+        setBackground(new Background(new BackgroundFill(Color.web("C4A484"), null, null)));
         Canvas canvas = new Canvas(545, 768);
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
@@ -49,7 +49,7 @@ public class DescriptionPane extends BorderPane {
         menuText.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                menuText.setFill(Color.GREEN);
+                menuText.setFill(Color.web("32CD32"));
                 menuText.setTranslateX(-2);
             }
         });
