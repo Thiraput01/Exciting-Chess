@@ -237,8 +237,8 @@ public class ChessboardPane extends Canvas {
 
         updateBoard(GameLogic.getInstance());
 
-        removePieceAt(currentPiece.getPosX(), currentPiece.getPosY());
-        setImageAt(currentPiece, posX, posY);
+        //removePieceAt(currentPiece.getPosX(), currentPiece.getPosY());
+        //setImageAt(currentPiece, posX, posY);
 
         gameInstance.setHighlighting(false);
         gameInstance.setCurrentClickingPiece(null);
