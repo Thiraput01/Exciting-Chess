@@ -19,11 +19,11 @@ public class Pawn extends ChessPiece implements Movable {
         if (!GameUtil.inRangeOfBoard(toX, toY)) return false;
         if (GameLogic.getInstance().getChessPieceAt(toX,toY)!=null && GameLogic.getInstance().getChessPieceAt(toX,toY).isWhite()==isWhite()) return false;
         int direction = isWhite() ? 1 : -1;
-        if (notMoved) return (toX==getPosX()) && (toY==getPosY()+direction || toY==getPosY()+2*direction);
         if ((toX == getPosX() + 1 || toX == getPosX() - 1) && toY == getPosY() + direction
                 && GameLogic.getInstance().getChessPieceAt(toX, toY) != null
                 && GameLogic.getInstance().getChessPieceAt(toX, toY).isWhite() != isWhite())
             return true; // attacking diagonally upward
+        if (notMoved) return (GameLogic.getInstance().getChessPieceAt(toX, toY) == null) && (toX==getPosX()) && (toY==getPosY()+direction || toY==getPosY()+2*direction);
         return (GameLogic.getInstance().getChessPieceAt(toX, toY) == null) && (toX == getPosX()) && (toY == getPosY() + direction); //moving normally
     }
 
