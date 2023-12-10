@@ -1,5 +1,6 @@
 package ChessPiece;
 
+import GameLogic.GameLogic;
 import GameLogic.GameUtil;
 
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class Knight extends ChessPiece implements Movable {
         possibleMoves.clear();
         for (int i = 0; i < 8; i++) {
             for (int e = 0; e < 8; e++) {
-                if (isValidMove(i, e) && GameUtil.isClearPath(getPosX(),getPosY(),i,e,this))
+                if (isValidMove(i, e) && GameLogic.getInstance().getChessPieceAt(i, e) == null || (isValidMove(i,e) && GameLogic.getInstance().getChessPieceAt(i, e) != null && GameLogic.getInstance().getChessPieceAt(i, e).isWhite() != isWhite()))
                     possibleMoves.add(new ChessPosition(i, e));
             }
         }
