@@ -15,7 +15,7 @@ public class Queen extends ChessPiece implements Movable {
     public boolean isValidMove(int toX, int toY) {
         if (!GameUtil.inRangeOfBoard(toX, toY)) return false;
         if (toX == getPosX() && toY == getPosY()) return false;
-        return Math.abs(toX - getPosX()) == 1 || Math.abs(toY - getPosY()) == 1 || toX == getPosX() || toY == getPosY() || Math.abs(toX - getPosX()) == Math.abs(toY - getPosY());
+        return toX == getPosX() || toY == getPosY() || Math.abs(toX - getPosX()) == Math.abs(toY - getPosY());
     }
 
     private String getImageURL(boolean isWhite) {
@@ -26,7 +26,7 @@ public class Queen extends ChessPiece implements Movable {
         possibleMoves.clear();
         for (int i = 0; i < 8; i++) {
             for (int e = 0; e < 8; e++) {
-                if (isValidMove(i, e) && GameUtil.isClearPath(getPosX(),getPosY(),i,e,this))
+                if (isValidMove(i, e) && GameUtil.isClearPath(getPosX(), getPosY(), i, e, this))
                     possibleMoves.add(new ChessPosition(i, e));
             }
         }
