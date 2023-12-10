@@ -115,7 +115,7 @@ public class GameLogic {
                 }
             }
         }
-        whiteWon = (!blackKingFound || !whiteKingFound) ? whiteKingFound : false; //if ends,whiteWon is when white king found
+        whiteWon = (!blackKingFound || !whiteKingFound || time_left_black <= 0 || time_left_white <= 0) ? (whiteKingFound && time_left_white>0) : false; //if ends,whiteWon is when white king found
         return !blackKingFound || !whiteKingFound || time_left_black <= 0 || time_left_white <= 0;
     }
 
