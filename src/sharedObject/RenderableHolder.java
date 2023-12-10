@@ -17,6 +17,7 @@ public class RenderableHolder {
 
     //Images
     public static Image wallpaper;
+    public static Image wallpaper2;
     public static Image bKing;
     public static Image wKing;
     public static Image bKnight;
@@ -56,6 +57,7 @@ public class RenderableHolder {
     public static void loadResource() {
         // Load Images
         wallpaper = new Image(ClassLoader.getSystemResource("wallpaper.jpg").toString());
+        wallpaper2 = new Image(ClassLoader.getSystemResource("wallpaper2.jpg").toString());
         bKing = new Image(ClassLoader.getSystemResource("bKing.png").toString());
         wKing = new Image(ClassLoader.getSystemResource("wKing.png").toString());
         bKnight = new Image(ClassLoader.getSystemResource("bKnight.png").toString());

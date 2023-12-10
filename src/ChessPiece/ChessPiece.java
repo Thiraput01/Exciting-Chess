@@ -97,6 +97,8 @@ public abstract class ChessPiece implements Movable {
                 return "White Queen ";
             } else if (this instanceof King) {
                 return "White King ";
+            } else if (this instanceof Bishop) {
+                return "White Bishop ";
             }
         } else {
             if (this instanceof Pawn) {
@@ -109,6 +111,8 @@ public abstract class ChessPiece implements Movable {
                 return "Black Queen ";
             } else if (this instanceof King) {
                 return "Black King ";
+            } else if (this instanceof Bishop) {
+                return "Black Bishop ";
             }
         }
         return "Invalid";
@@ -124,28 +128,28 @@ public abstract class ChessPiece implements Movable {
             int oldY = getPosY();  // Store the old Y position
 
             if (GameLogic.getInstance().getChessPieceAt(x, y) == null) { //moving normally
-                GameLogic.getInstance().setChessPieceAt(getPosX(),getPosY(),null);
+                GameLogic.getInstance().setChessPieceAt(getPosX(), getPosY(), null);
                 RenderableHolder.moveChess.play();
                 setPosY(y);
                 setPosX(x);
-                GameLogic.getInstance().setChessPieceAt(getPosX(),getPosY(),this);
+                GameLogic.getInstance().setChessPieceAt(getPosX(), getPosY(), this);
                 GameLogic.getInstance().setCurrentDesc(current + "moved from " + oldX + " " + oldY + " to " + getPosX() + " " + getPosY());
             } else {
                 // attack
                 if (GameUtil.attack(current, GameLogic.getInstance().getChessPieceAt(x, y), x, y)) {
                     // successfully attacked
                     RenderableHolder.captureChess.play();
-                    GameLogic.getInstance().setChessPieceAt(getPosX(),getPosY(),null);
+                    GameLogic.getInstance().setChessPieceAt(getPosX(), getPosY(), null);
                     setPosY(y);
                     setPosX(x);
-                    GameLogic.getInstance().setCurrentDesc(current + "from " + oldX + " " + oldY + "killed an enemy at " + getPosX() + " " + getPosY());
+                    GameLogic.getInstance().setCurrentDesc(current + "from " + oldX + " " + oldY + " killed an enemy at " + getPosX() + " " + getPosY());
                 } else {
                     // failed to attack, killed
                     RenderableHolder.captureFailed.play();
                     GameLogic.getInstance().setChessPieceAt(oldX, oldY, null);
                     setPosX(-10);  // Restore the original X position
                     setPosY(-10);  // Restore the original Y position
-                    GameLogic.getInstance().setCurrentDesc(current + "from" + oldX + oldY + "failed to kill, got revenged to death.");
+                    GameLogic.getInstance().setCurrentDesc(current + "from " + oldX + oldY + " failed to kill, got revenged to death.");
                 }
             }
             return true;

@@ -16,7 +16,7 @@ public class GameLogic {
     private static GameLogic instance = null;
     private boolean isHighlighting = false;
     private ChessPiece currentClickingPiece;
-
+    private static boolean whiteWon = false; //used only when game ends
     private String currentDesc = "";
 
     public GameLogic() {
@@ -27,7 +27,7 @@ public class GameLogic {
         currentPlayer = true;
         //initialized chess Board();
         initializedBoard();
-        gameTime=0;
+        gameTime = 0;
     }
 
     public void initializedBoard() {
@@ -85,7 +85,7 @@ public class GameLogic {
     }
 
     public static void resetInstance() {
-        instance=new GameLogic();
+        instance = new GameLogic();
     }
 
     public void nextPlayer() {
@@ -104,17 +104,19 @@ public class GameLogic {
     }
 
     public boolean isGameEnd() {
+        boolean blackKingFound = false;
+        boolean whiteKingFound = false;
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 ChessPiece currentPiece = board.get(i).get(j);
                 if (currentPiece instanceof King) {
-                    if (currentPiece.getPosX() == -1) {
-                        return true;
-                    }
+                    if (currentPiece.isWhite()) whiteKingFound = true;
+                    else blackKingFound = true;
                 }
             }
         }
-        return time_left_black <= 0 || time_left_white <= 0;
+        whiteWon = (!blackKingFound || !whiteKingFound) ? whiteKingFound : false; //if ends,whiteWon is when white king found
+        return !blackKingFound || !whiteKingFound || time_left_black <= 0 || time_left_white <= 0;
     }
 
     public String getTime_left_white() {
@@ -204,17 +206,21 @@ public class GameLogic {
         return currentPlayer;
     }
 
-    public String getCurrentDesc(){
+    public String getCurrentDesc() {
         return currentDesc;
     }
 
     public void setCurrentDesc(String currentDesc) {
         this.currentDesc = currentDesc + "\n";
-        if(currentPlayer){
+        if (currentPlayer) {
             this.currentDesc += "->Black turn\n";
-        }else {
+        } else {
             this.currentDesc += "->White turn\n";
         }
         DescriptionPane.updateDescriptionText();
+    }
+
+    public static boolean isWhiteWon() {
+        return whiteWon;
     }
 }
