@@ -27,18 +27,20 @@ public class ChessboardPane extends Canvas {
                 double mouseX = mouseEvent.getX();
                 double mouseY = mouseEvent.getY();
 
+
                 int posX = changeToposX(mouseX);
                 int posY = changeToposY(mouseY);
                 GameLogic gameInstance = GameLogic.getInstance();
                 boolean currentPLayer = gameInstance.getCurrentPlayer();
                 ChessPiece currentPiece = gameInstance.getChessPieceAt(posX, posY);
                 boolean emptySquare = currentPiece == null;
-
+                System.out.println("this is a " + currentPLayer + " turn");
+                if(!emptySquare) System.out.println("the pice to move is " + currentPiece.isWhite());
                 //1)check if it was in move state first (to handle null currentPiece)
                 if (gameInstance.isHighlighting() && checkCLickInHighlight(gameInstance, posX, posY)) {
                     //check if the game is in highlight state and click in highlight is valid
                     move(gameInstance, posX, posY);
-                } else if (!emptySquare && currentPLayer && currentPiece.isWhite()) {
+                } else if (!emptySquare && (currentPLayer == currentPiece.isWhite())) {
                     if (!gameInstance.isHighlighting()) {
                         //this is the first state where the player needs to click a piece to activate highlighting
                         highlight(gameInstance, currentPiece, posX, posY);
@@ -232,15 +234,15 @@ public class ChessboardPane extends Canvas {
     private void move(GameLogic gameInstance, int posX, int posY) {
         ChessPiece currentPiece = gameInstance.getCurrentClickingPiece();
         currentPiece.move(posX, posY);
-        currentPiece.move(posX, posY);
 
         updateBoard(GameLogic.getInstance());
 
         removePieceAt(currentPiece.getPosX(), currentPiece.getPosY());
         setImageAt(currentPiece, posX, posY);
 
-        GameLogic.getInstance().setHighlighting(false);
+        gameInstance.setHighlighting(false);
         gameInstance.setCurrentClickingPiece(null);
+        gameInstance.nextPlayer();
     }
 
     public boolean checkCLickInHighlight(GameLogic gameInstance, int posX, int posY) {
