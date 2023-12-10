@@ -22,6 +22,7 @@ import sharedObject.RenderableHolder;
 
 public class DescriptionPane extends BorderPane {
 
+    protected static Color color = Color.BLACK;
     private Scene scene;
 
     private static Text descriptionText;
@@ -36,7 +37,7 @@ public class DescriptionPane extends BorderPane {
         Font menu_exitFont = Font.font("Bauhaus 93", FontWeight.MEDIUM, 50);
         Font descriptionFont = Font.font("Bauhaus 93", FontWeight.EXTRA_LIGHT, 50);
         String current;
-        Text menuText = new Text("Menu");
+        Text menuText = new Text("Back");
         descriptionText = new Text("Start Game!\n" + "White turn");
 
         menuText.setFont(menu_exitFont);
@@ -111,7 +112,11 @@ public class DescriptionPane extends BorderPane {
     }
 
     public static void updateDescriptionText(){
+        descriptionText.setFill(color);
         descriptionText.setText(GameLogic.getInstance().getCurrentDesc());
     }
 
+    public static void setColor(Color color) {
+        DescriptionPane.color = color;
+    }
 }

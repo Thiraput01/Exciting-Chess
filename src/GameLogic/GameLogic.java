@@ -211,6 +211,7 @@ public class GameLogic {
     }
 
     public void setCurrentDesc(String currentDesc) {
+
         this.currentDesc = currentDesc + "\n";
         if (currentPlayer) {
             this.currentDesc += "->Black turn\n";
