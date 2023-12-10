@@ -133,7 +133,7 @@ public abstract class ChessPiece implements Movable {
                 setPosY(y);
                 setPosX(x);
                 GameLogic.getInstance().setChessPieceAt(getPosX(), getPosY(), this);
-                GameLogic.getInstance().setCurrentDesc(current + "moved from " + oldX + " " + oldY + " to " + getPosX() + " " + getPosY());
+                GameLogic.getInstance().setCurrentDesc(current + "\nmoved from (" + oldX + "," + oldY + ")\nto (" + getPosX() + "," + getPosY()+")");
             } else {
                 // attack
                 if (GameUtil.attack(current, GameLogic.getInstance().getChessPieceAt(x, y), x, y)) {
@@ -142,14 +142,14 @@ public abstract class ChessPiece implements Movable {
                     GameLogic.getInstance().setChessPieceAt(getPosX(), getPosY(), null);
                     setPosY(y);
                     setPosX(x);
-                    GameLogic.getInstance().setCurrentDesc(current + "from " + oldX + " " + oldY + " killed an enemy at " + getPosX() + " " + getPosY());
+                    GameLogic.getInstance().setCurrentDesc(current + "\nfrom (" + oldX + "," + oldY + ")\nKilled an enemy at \n(" + getPosX() + "," + getPosY()+")");
                 } else {
                     // failed to attack, killed
                     RenderableHolder.captureFailed.play();
                     GameLogic.getInstance().setChessPieceAt(oldX, oldY, null);
                     setPosX(-10);  // Restore the original X position
                     setPosY(-10);  // Restore the original Y position
-                    GameLogic.getInstance().setCurrentDesc(current + "from " + oldX + " " + oldY + "\nFailed to kill, got revenged to death!!");
+                    GameLogic.getInstance().setCurrentDesc(current + "\nfrom (" + oldX + "," + oldY + ")\nFailed to kill,\ngot revenged \nto death!!");
                 }
             }
             if (this instanceof Pawn) ((Pawn) this).setNotMoved(false);

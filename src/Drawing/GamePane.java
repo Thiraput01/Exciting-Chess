@@ -71,7 +71,7 @@ public class GamePane extends BorderPane implements IRenderable {
 
 
     private void drawYnum(GraphicsContext gc) {
-        gc.setFont(Font.font("Impact", FontWeight.LIGHT, 40));
+        gc.setFont(Font.font("Bauhaus 93", FontWeight.MEDIUM, 40));
         gc.setFill(Color.BLACK);
         for (int y = 0; y < 8; y++) {
             gc.fillText(Integer.toString(y), 70, 55 + 80 * y, 30);
@@ -79,7 +79,7 @@ public class GamePane extends BorderPane implements IRenderable {
     }
 
     private void drawXnum(GraphicsContext gc) {
-        gc.setFont(Font.font("Impact", FontWeight.LIGHT, 40));
+        gc.setFont(Font.font("Bauhaus 93", FontWeight.MEDIUM, 40));
         gc.setFill(Color.BLACK);
         for (int x = 0; x < 8; x++) {
             gc.fillText(Integer.toString(x), 130 + 80 * x, 40, 30);
@@ -122,7 +122,7 @@ public class GamePane extends BorderPane implements IRenderable {
     }*/
 
     private void drawGameTime(GraphicsContext gc) {
-        gc.setFont(Font.font("Impact", FontWeight.LIGHT, 40));
+        gc.setFont(Font.font("Bauhaus 93", FontWeight.MEDIUM, 40));
         gc.setFill(Color.BLACK);
         gc.clearRect(0, 0, 816, 100);
         gc.fillText(GameLogic.getStringGameTime(), 366, 50, 10000);

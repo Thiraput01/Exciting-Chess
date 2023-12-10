@@ -39,9 +39,9 @@ public class StartScreen extends BorderPane {
         VBox vBox = new VBox(30);
         vBox.setAlignment(Pos.CENTER);
         //set text font
-        Font titleFont = Font.font("Impact", FontWeight.MEDIUM, 100);
-        Font playFont = Font.font("Cochin", FontWeight.BOLD, 50);
-        Font exitFont = Font.font("Cochin", FontWeight.BOLD, 50);
+        Font titleFont = Font.font("Bauhaus 93", FontWeight.MEDIUM, 100);
+        Font playFont = Font.font("Bauhaus 93", FontWeight.MEDIUM, 50);
+        Font exitFont = Font.font("Bauhaus 93", FontWeight.MEDIUM, 50);
 
         //set text
         Text title = new Text("EXCITING  CHESS");

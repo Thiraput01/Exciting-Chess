@@ -17,6 +17,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import sharedObject.RenderableHolder;
 
 public class DescriptionPane extends BorderPane {
@@ -32,8 +33,8 @@ public class DescriptionPane extends BorderPane {
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
         // Set text to draw
-        Font menu_exitFont = Font.font("Impact", FontWeight.MEDIUM, 50);
-        Font descriptionFont = Font.font("Cochin", FontWeight.EXTRA_LIGHT, 25);
+        Font menu_exitFont = Font.font("Bauhaus 93", FontWeight.MEDIUM, 50);
+        Font descriptionFont = Font.font("Bauhaus 93", FontWeight.EXTRA_LIGHT, 50);
         String current;
         Text menuText = new Text("Menu");
         descriptionText = new Text("Start Game!\n" + "White turn");
@@ -43,6 +44,7 @@ public class DescriptionPane extends BorderPane {
 
         descriptionText.setFont(descriptionFont);
         descriptionText.setFill(Color.BLACK);
+        descriptionText.setTextAlignment(TextAlignment.CENTER);
         menuText.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
