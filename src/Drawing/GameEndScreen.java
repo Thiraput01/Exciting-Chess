@@ -37,7 +37,7 @@ public class GameEndScreen extends StackPane {
 
         boolean whiteWon = GameLogic.isWhiteWon();
         String endGameMessage = "Congratulation!\n";
-        endGameMessage += whiteWon ? "White Won!" : "Black Won!";
+        endGameMessage += whiteWon ? "WHITE TEAM WON!" : "BLACK TEAM WON!";
 
         Text endGameMessageText = new Text(endGameMessage);
         endGameMessageText.setFill(Color.web("fcc200"));
@@ -52,9 +52,9 @@ public class GameEndScreen extends StackPane {
         newGameText.setFill(Color.web("fcc200"));
         newGameText.setFont(Font.font("Bauhaus 93", FontWeight.MEDIUM, 50));
 
-        vBox.getChildren().addAll(endGameMessageText, exitText, newGameText);
+        vBox.getChildren().addAll(endGameMessageText, newGameText, exitText);
         getChildren().add(vBox);
-        setAlignment(vBox,Pos.CENTER);
+        setAlignment(vBox, Pos.CENTER);
         newGameText.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -110,7 +110,8 @@ public class GameEndScreen extends StackPane {
             }
         });
     }
-    public void toMainScreen(GraphicsContext gc){
+
+    public void toMainScreen(GraphicsContext gc) {
         MainScreenPane mainScreenPane = new MainScreenPane();
         Group group = new Group(mainScreenPane);
         scene = new Scene(group);
