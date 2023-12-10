@@ -6,17 +6,20 @@ import GameLogic.GameUtil;
 import java.util.ArrayList;
 
 public class Pawn extends ChessPiece implements Movable {
+    private boolean notMoved;
     public Pawn(int x, int y, boolean isWhite) {
         super(x, y, isWhite);
         setRate(0.2);
         setPieceUrl(getImageURL(isWhite));
         possibleMoves = new ArrayList<>();
+       notMoved=true;
     }
 
     public boolean isValidMove(int toX, int toY) {
         if (!GameUtil.inRangeOfBoard(toX, toY)) return false;
         if (GameLogic.getInstance().getChessPieceAt(toX,toY)!=null && GameLogic.getInstance().getChessPieceAt(toX,toY).isWhite()==isWhite()) return false;
         int direction = isWhite() ? 1 : -1;
+        if (notMoved) return (toX==getPosX()) && (toY==getPosY()+direction || toY==getPosY()+2*direction);
         if ((toX == getPosX() + 1 || toX == getPosX() - 1) && toY == getPosY() + direction
                 && GameLogic.getInstance().getChessPieceAt(toX, toY) != null
                 && GameLogic.getInstance().getChessPieceAt(toX, toY).isWhite() != isWhite())
@@ -30,11 +33,25 @@ public class Pawn extends ChessPiece implements Movable {
 
     public void setCurrentAllPossibleMoves() {
         possibleMoves.clear();
+        if (notMoved){
+            int direction = isWhite() ? 1 : -1;
+            possibleMoves.add(new ChessPosition(getPosX(),getPosY()+direction));
+            possibleMoves.add(new ChessPosition(getPosX(),getPosY()+2*direction));
+            return;
+        }
         for (int i = 0; i < 8; i++) {
             for (int e = 0; e < 8; e++) {
                 if (isValidMove(i, e) && GameUtil.isClearPath(getPosX(), getPosY(), i, e, this))
                     possibleMoves.add(new ChessPosition(i, e));
             }
         }
+    }
+
+    public boolean isNotMoved() {
+        return notMoved;
+    }
+
+    public void setNotMoved(boolean notMoved) {
+        this.notMoved = notMoved;
     }
 }

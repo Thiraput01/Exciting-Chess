@@ -152,6 +152,7 @@ public abstract class ChessPiece implements Movable {
                     GameLogic.getInstance().setCurrentDesc(current + "from " + oldX + oldY + " failed to kill, got revenged to death.");
                 }
             }
+            if (this instanceof Pawn) ((Pawn) this).setNotMoved(false);
             return true;
         }
         return false;
