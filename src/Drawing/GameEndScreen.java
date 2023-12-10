@@ -38,17 +38,14 @@ public class GameEndScreen extends StackPane {
         String endGameMessage = whiteWon ? "White Won!\n" : "Black Won!\n";
         endGameMessage += "Congratulation!";
         Text endGameMessageText = new Text(endGameMessage);
-        endGameMessageText.setFont(Font.font("Cochin", FontWeight.BOLD, 100));
         endGameMessageText.setFill(Color.WHITE);
-        endGameMessageText.setFont(Font.font("Bauhaus 93", FontWeight.MEDIUM, 50));
+        endGameMessageText.setFont(Font.font("Bauhaus 93", FontWeight.MEDIUM, 100));
 
         Text exitText = new Text("-EXIT");
-        exitText.setFont(Font.font("Cochin", FontWeight.BOLD, 50));
         exitText.setFill(Color.WHITE);
         exitText.setFont(Font.font("Bauhaus 93", FontWeight.MEDIUM, 50));
 
         Text newGameText = new Text("-NEW GAME");
-        newGameText.setFont(Font.font("Cochin", FontWeight.BOLD, 50));
         newGameText.setFill(Color.WHITE);
         newGameText.setFont(Font.font("Bauhaus 93", FontWeight.MEDIUM, 50));
 
