@@ -13,6 +13,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -38,12 +39,15 @@ public class GameEndScreen extends StackPane {
         endGameMessage += "Congratulation!";
         Text endGameMessageText = new Text(endGameMessage);
         endGameMessageText.setFont(Font.font("Cochin", FontWeight.BOLD, 100));
+        endGameMessageText.setFill(Color.WHITE);
 
         Text exitText = new Text("-EXIT");
         exitText.setFont(Font.font("Cochin", FontWeight.BOLD, 50));
+        exitText.setFill(Color.WHITE);
 
         Text newGameText = new Text("-NEW GAME");
         newGameText.setFont(Font.font("Cochin", FontWeight.BOLD, 50));
+        newGameText.setFill(Color.WHITE);
 
         vBox.getChildren().addAll(endGameMessageText, exitText, newGameText);
         setAlignment(vBox,Pos.CENTER);
