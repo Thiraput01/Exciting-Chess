@@ -136,8 +136,8 @@ public abstract class ChessPiece implements Movable {
                 } else {
                     // failed to attack, killed
                     GameLogic.getInstance().setChessPieceAt(oldX, oldY, null);
-                    setPosX(oldX);  // Restore the original X position
-                    setPosY(oldY);  // Restore the original Y position
+                    setPosX(-1);  // Restore the original X position
+                    setPosY(-1);  // Restore the original Y position
                     GameLogic.getInstance().setCurrentDesc(current + "from" + oldX + oldY + "failed to kill, got revenged to death.");
                 }
             }
