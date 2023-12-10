@@ -33,7 +33,7 @@ public class DescriptionPane extends BorderPane {
 
         // Set text to draw
         Font menu_exitFont = Font.font("Impact", FontWeight.MEDIUM, 50);
-        Font descriptionFont = Font.font("Cochin", FontWeight.EXTRA_LIGHT, 40);
+        Font descriptionFont = Font.font("Cochin", FontWeight.EXTRA_LIGHT, 25);
         String current;
         Text menuText = new Text("Menu");
         descriptionText = new Text("Start Game!\n" + "White turn");
