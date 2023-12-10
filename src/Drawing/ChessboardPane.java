@@ -215,8 +215,6 @@ public class ChessboardPane extends Canvas {
 
     private void highlight(GameLogic gameInstance, ChessPiece currentPiece, int posX, int posY) {
         ArrayList<ChessPosition> allPossibleMoves = currentPiece.getPossibleMoves();
-        System.out.println(posX);
-        System.out.println(posY);
         for (ChessPosition chessPosition : allPossibleMoves) {
             highlightMoves(getGraphicsContext2D(), chessPosition.getX(), chessPosition.getY());
         }

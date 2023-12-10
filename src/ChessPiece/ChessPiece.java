@@ -88,7 +88,7 @@ public abstract class ChessPiece implements Movable {
     public String toString() {
         if (isWhite()) {
             if (this instanceof Pawn) {
-                return "White Pawn  ";
+                return "White Pawn ";
             } else if (this instanceof Knight) {
                 return "White Knight ";
             } else if (this instanceof Rook) {
@@ -149,7 +149,7 @@ public abstract class ChessPiece implements Movable {
                     GameLogic.getInstance().setChessPieceAt(oldX, oldY, null);
                     setPosX(-10);  // Restore the original X position
                     setPosY(-10);  // Restore the original Y position
-                    GameLogic.getInstance().setCurrentDesc(current + "from " + oldX + oldY + " failed to kill, got revenged to death.");
+                    GameLogic.getInstance().setCurrentDesc(current + "from " + oldX + " " + oldY + "\nFailed to kill, got revenged to death!!");
                 }
             }
             if (this instanceof Pawn) ((Pawn) this).setNotMoved(false);
