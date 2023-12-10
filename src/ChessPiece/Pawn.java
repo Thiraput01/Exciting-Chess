@@ -33,12 +33,6 @@ public class Pawn extends ChessPiece implements Movable {
 
     public void setCurrentAllPossibleMoves() {
         possibleMoves.clear();
-        if (notMoved){
-            int direction = isWhite() ? 1 : -1;
-            possibleMoves.add(new ChessPosition(getPosX(),getPosY()+direction));
-            possibleMoves.add(new ChessPosition(getPosX(),getPosY()+2*direction));
-            return;
-        }
         for (int i = 0; i < 8; i++) {
             for (int e = 0; e < 8; e++) {
                 if (isValidMove(i, e) && GameUtil.isClearPath(getPosX(), getPosY(), i, e, this))
