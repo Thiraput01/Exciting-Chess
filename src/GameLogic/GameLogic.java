@@ -57,8 +57,8 @@ public class GameLogic {
         board.get(0).set(0, new Rook(0, 0, true));
         board.get(1).set(0, new Knight(1, 0, true));
         board.get(2).set(0, new Bishop(2, 0, true));
-        board.get(3).set(0, new Queen(3, 0, true));
-        board.get(4).set(0, new King(4, 0, true));
+        board.get(4).set(0, new Queen(4, 0, true));
+        board.get(3).set(0, new King(3, 0, true));
         board.get(5).set(0, new Bishop(5, 0, true));
         board.get(6).set(0, new Knight(6, 0, true));
         board.get(7).set(0, new Rook(7, 0, true));
@@ -67,8 +67,8 @@ public class GameLogic {
         board.get(0).set(7, new Rook(0, 7, false));
         board.get(1).set(7, new Knight(1, 7, false));
         board.get(2).set(7, new Bishop(2, 7, false));
-        board.get(3).set(7, new Queen(3, 7, false));
-        board.get(4).set(7, new King(4, 7, false));
+        board.get(4).set(7, new Queen(4, 7, false));
+        board.get(3).set(7, new King(3, 7, false));
         board.get(5).set(7, new Bishop(5, 7, false));
         board.get(6).set(7, new Knight(6, 7, false));
         board.get(7).set(7, new Rook(7, 7, false));
