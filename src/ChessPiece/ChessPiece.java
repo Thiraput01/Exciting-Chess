@@ -2,6 +2,7 @@ package ChessPiece;
 
 import GameLogic.GameLogic;
 import GameLogic.GameUtil;
+import sharedObject.RenderableHolder;
 
 import java.util.ArrayList;
 
@@ -123,6 +124,7 @@ public abstract class ChessPiece implements Movable {
             int oldY = getPosY();  // Store the old Y position
 
             if (GameLogic.getInstance().getChessPieceAt(x, y) == null) {
+                RenderableHolder.moveChess.play();
                 setPosY(y);
                 setPosX(x);
                 GameLogic.getInstance().setCurrentDesc(current + "moved from " + oldX + " " + oldY + " to " + getPosX() + " " + getPosY());
@@ -130,11 +132,13 @@ public abstract class ChessPiece implements Movable {
                 // attack
                 if (GameUtil.attack(current, GameLogic.getInstance().getChessPieceAt(x, y), x, y)) {
                     // successfully attacked
+                    RenderableHolder.captureChess.play();
                     setPosY(y);
                     setPosX(x);
                     GameLogic.getInstance().setCurrentDesc(current + "from " + oldX + " " + oldY + "killed an enemy at " + getPosX() + " " + getPosY());
                 } else {
                     // failed to attack, killed
+                    RenderableHolder.captureFailed.play();
                     GameLogic.getInstance().setChessPieceAt(oldX, oldY, null);
                     setPosX(-1);  // Restore the original X position
                     setPosY(-1);  // Restore the original Y position
