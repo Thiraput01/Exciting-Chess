@@ -213,16 +213,36 @@ public class ChessboardPane extends Canvas {
         gc.fillRect(x, y, CELL_SIZE, CELL_SIZE);
     }
 
+    private void highlightRedMoves(GraphicsContext gc, int posX, int posY) {
+        gc.setFill(Color.RED);
+        int x = posX * CELL_SIZE;
+        int y = posY * CELL_SIZE;
+        gc.fillRect(x, y, CELL_SIZE, CELL_SIZE);
+    }
+
     private void highlight(GameLogic gameInstance, ChessPiece currentPiece, int posX, int posY) {
         ArrayList<ChessPosition> allPossibleMoves = currentPiece.getPossibleMoves();
+        GraphicsContext gc = getGraphicsContext2D();
+
         for (ChessPosition chessPosition : allPossibleMoves) {
-            highlightMoves(getGraphicsContext2D(), chessPosition.getX(), chessPosition.getY());
+            int x = chessPosition.getX();
+            int y = chessPosition.getY();
+
+            // Draw the highlight
+            highlightMoves(gc, x, y);
+
+            ChessPiece pieceAtPosition = gameInstance.getChessPieceAt(x, y);
+            if (pieceAtPosition != null) {
+                // Draw the piece again on top of the highlight
+                highlightRedMoves(gc, x, y);
+                drawPiece(gc, pieceAtPosition, x, y);
+            }
         }
         gameInstance.setHighlighting(true);
-
-        //remember the piece that player clicked
+        // Remember the piece that the player clicked
         gameInstance.setCurrentClickingPiece(currentPiece);
     }
+
 
     private void changePiecetohighlight(GameLogic gameInstance, ChessPiece currentPiece, int posX, int posY) {
         updateBoard(gameInstance);
