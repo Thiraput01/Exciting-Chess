@@ -1,5 +1,6 @@
 package Drawing;
 
+import GameLogic.GameLogic;
 import Main.Main;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -21,6 +22,8 @@ import sharedObject.RenderableHolder;
 public class DescriptionPane extends BorderPane {
 
     private Scene scene;
+
+    private static Text descriptionText;
     public DescriptionPane() {
         super();
         setPrefSize(545, 768);
@@ -30,11 +33,16 @@ public class DescriptionPane extends BorderPane {
 
         // Set text to draw
         Font menu_exitFont = Font.font("Impact", FontWeight.MEDIUM, 50);
-
+        Font descriptionFont = Font.font("Cochin", FontWeight.EXTRA_LIGHT, 40);
+        String current;
         Text menuText = new Text("Menu");
+        descriptionText = new Text("Start Game!\n" + "White turn");
+
         menuText.setFont(menu_exitFont);
         menuText.setFill(Color.BLACK);
 
+        descriptionText.setFont(descriptionFont);
+        descriptionText.setFill(Color.BLACK);
         menuText.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -80,6 +88,7 @@ public class DescriptionPane extends BorderPane {
 
         // Set the HBox as the bottom of the BorderPane
         setBottom(textContainer);
+        setCenter(descriptionText);
     }
 
     public void toStartScreen(){
@@ -91,6 +100,10 @@ public class DescriptionPane extends BorderPane {
         RenderableHolder.getInstance().clear();
         Main.stage.setScene(scene);
         startScreen.requestFocus();
+    }
+
+    public static void updateDescriptionText(){
+        descriptionText.setText(GameLogic.getInstance().getCurrentDesc());
     }
 
 }

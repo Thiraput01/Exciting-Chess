@@ -34,8 +34,8 @@ public class ChessboardPane extends Canvas {
                 boolean currentPLayer = gameInstance.getCurrentPlayer();
                 ChessPiece currentPiece = gameInstance.getChessPieceAt(posX, posY);
                 boolean emptySquare = currentPiece == null;
-                System.out.println("this is a " + currentPLayer + " turn");
-                if(!emptySquare) System.out.println("the pice to move is " + currentPiece.isWhite());
+                //System.out.println("this is a " + currentPLayer + " turn");
+                //if(!emptySquare) System.out.println("the pice to move is " + currentPiece.isWhite());
                 //1)check if it was in move state first (to handle null currentPiece)
                 if (gameInstance.isHighlighting() && checkCLickInHighlight(gameInstance, posX, posY)) {
                     //check if the game is in highlight state and click in highlight is valid
