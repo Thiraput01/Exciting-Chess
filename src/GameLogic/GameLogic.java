@@ -1,6 +1,7 @@
 package GameLogic;
 
 import ChessPiece.*;
+import Drawing.DescriptionPane;
 
 import java.util.ArrayList;
 
@@ -15,6 +16,8 @@ public class GameLogic {
     private static GameLogic instance = null;
     private boolean isHighlighting = false;
     private ChessPiece currentClickingPiece;
+
+    private String currentDesc = "";
 
     public GameLogic() {
         //start timer for both black and white
@@ -199,5 +202,19 @@ public class GameLogic {
 
     public boolean getCurrentPlayer() {
         return currentPlayer;
+    }
+
+    public String getCurrentDesc(){
+        return currentDesc;
+    }
+
+    public void setCurrentDesc(String currentDesc) {
+        this.currentDesc += currentDesc + "\n";
+        if(currentPlayer){
+            this.currentDesc += "->Black turn\n";
+        }else {
+            this.currentDesc += "->White turn\n";
+        }
+        DescriptionPane.updateDescriptionText();
     }
 }

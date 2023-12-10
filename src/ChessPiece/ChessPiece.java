@@ -125,21 +125,20 @@ public abstract class ChessPiece implements Movable {
             if (GameLogic.getInstance().getChessPieceAt(x, y) == null) {
                 setPosY(y);
                 setPosX(x);
-
-                System.out.println(current + "moved from " + oldX + " " + oldY + " to " + getPosX() + " " + getPosY());
+                GameLogic.getInstance().setCurrentDesc(current + "moved from " + oldX + " " + oldY + " to " + getPosX() + " " + getPosY());
             } else {
                 // attack
                 if (GameUtil.attack(current, GameLogic.getInstance().getChessPieceAt(x, y), x, y)) {
                     // successfully attacked
                     setPosY(y);
                     setPosX(x);
-                    System.out.println(current + "from " + oldX + " " + oldY + "killed an enemy at " + getPosX() + " " + getPosY());
+                    GameLogic.getInstance().setCurrentDesc(current + "from " + oldX + " " + oldY + "killed an enemy at " + getPosX() + " " + getPosY());
                 } else {
                     // failed to attack, killed
                     GameLogic.getInstance().setChessPieceAt(oldX, oldY, null);
                     setPosX(oldX);  // Restore the original X position
                     setPosY(oldY);  // Restore the original Y position
-                    System.out.println(current + "from" + oldX + oldY + "failed to kill, got revenged to death.");
+                    GameLogic.getInstance().setCurrentDesc(current + "from" + oldX + oldY + "failed to kill, got revenged to death.");
                 }
             }
             return true;
