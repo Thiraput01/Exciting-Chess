@@ -43,10 +43,10 @@ public class ChessboardPane extends Canvas {
                 } else if (!emptySquare && (currentPLayer == currentPiece.isWhite())) {
                     if (!gameInstance.isHighlighting()) {
                         //this is the first state where the player needs to click a piece to activate highlighting
-                        highlight(gameInstance, currentPiece, posX, posY);
+                        highlight(gameInstance, currentPiece);
                     } else {
                         //this is the state where the player clicked other piece to change the piece to move
-                        changePiecetohighlight(gameInstance, currentPiece, posX, posY);
+                        changePiecetohighlight(gameInstance, currentPiece);
                     }
                 }
                 //if it comes down here, means it is a necessary click --> ignore
@@ -74,7 +74,7 @@ public class ChessboardPane extends Canvas {
     }
 
     public void initialize() {
-        initBoard(GameLogic.getInstance());
+        updateBoard(GameLogic.getInstance());
     }
 
     public Image getPieceImage(ChessPiece piece) {
@@ -147,33 +147,6 @@ public class ChessboardPane extends Canvas {
         gc.drawImage(pieceImage, x, y, PIECE_SIZE, PIECE_SIZE);
     }
 
-    public void initBoard(GameLogic gameInstance) {
-        GraphicsContext gc = getGraphicsContext2D();
-        gc.clearRect(0, 0, getWidth(), getHeight()); // Clear the canvas
-
-        // Draw the chessboard squares
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                int posX = i * CELL_SIZE;
-                int posY = j * CELL_SIZE;
-                if ((i + j) % 2 == 0) {
-                    drawRectLightBrown(gc, posX, posY);
-                } else {
-                    drawRectBrown(gc, posX, posY);
-                }
-            }
-        }
-        // Draw the chess pieces
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                ChessPiece piece = gameInstance.getChessPieceAt(i, j);
-                if (piece != null) {
-                    drawPiece(gc, piece, i, j);
-                }
-            }
-        }
-    }
-
     private void highlightMoves(GraphicsContext gc, int posX, int posY) {
         gc.setFill(Color.LIGHTGREEN);
         int x = posX * CELL_SIZE;
@@ -188,7 +161,7 @@ public class ChessboardPane extends Canvas {
         gc.fillRect(x, y, CELL_SIZE, CELL_SIZE);
     }
 
-    private void highlight(GameLogic gameInstance, ChessPiece currentPiece, int posX, int posY) {
+    private void highlight(GameLogic gameInstance, ChessPiece currentPiece) {
         ArrayList<ChessPosition> allPossibleMoves = currentPiece.getPossibleMoves();
         GraphicsContext gc = getGraphicsContext2D();
 
@@ -212,9 +185,9 @@ public class ChessboardPane extends Canvas {
     }
 
 
-    private void changePiecetohighlight(GameLogic gameInstance, ChessPiece currentPiece, int posX, int posY) {
+    private void changePiecetohighlight(GameLogic gameInstance, ChessPiece currentPiece) {
         updateBoard(gameInstance);
-        highlight(gameInstance, currentPiece, posX, posY);
+        highlight(gameInstance, currentPiece);
     }
 
     private void move(GameLogic gameInstance, int posX, int posY) {
