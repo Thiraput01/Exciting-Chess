@@ -6,8 +6,6 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -31,13 +29,10 @@ public class DescriptionPane extends BorderPane {
         super();
         setPrefSize(545, 768);
         setBackground(new Background(new BackgroundFill(Color.web("C4A484"), null, null)));
-        Canvas canvas = new Canvas(545, 768);
-        GraphicsContext gc = canvas.getGraphicsContext2D();
 
         // Set text to draw
         Font menu_exitFont = Font.font("Bauhaus 93", FontWeight.MEDIUM, 50);
         Font descriptionFont = Font.font("Bauhaus 93", FontWeight.EXTRA_LIGHT, 50);
-        String current;
         Text menuText = new Text("BACK");
         descriptionText = new Text("Start Game!\n" + "White turn");
 
