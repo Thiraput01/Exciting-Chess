@@ -89,11 +89,11 @@ public class StartScreen extends BorderPane {
                     @Override
                     public void run() {
                         RenderableHolder.clickButton.play();
-                        toMainScreen(gc);
+                        toMainScreen();
                         GameLogic.resetInstance();
                     }
                 });
-                toMainScreen(gc);
+                toMainScreen();
             }
         });
 
@@ -124,7 +124,7 @@ public class StartScreen extends BorderPane {
     }
 
 
-    public static void toMainScreen(GraphicsContext gc) {
+    public static void toMainScreen() {
         MainScreenPane mainScreenPane = new MainScreenPane();
         Group group = new Group(mainScreenPane);
         scene = new Scene(group);
