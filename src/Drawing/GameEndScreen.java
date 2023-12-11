@@ -37,7 +37,7 @@ public class GameEndScreen extends StackPane {
 
         boolean whiteWon = GameLogic.isWhiteWon();
         String endGameMessage = "CONGRATULATION!\n";
-        endGameMessage += whiteWon ? "WHITE TEAM WON!" : "BLACK TEAM WON!";
+        endGameMessage += whiteWon ? "WHITE TEAM WINS!" : "BLACK TEAM WINS!";
 
         Text endGameMessageText = new Text(endGameMessage);
         endGameMessageText.setFill(Color.web("fcc200"));
