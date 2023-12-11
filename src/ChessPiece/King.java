@@ -9,7 +9,7 @@ public class King extends ChessPiece implements Movable {
 
     public King(int x, int y, boolean isWhite) {
         super(x, y, isWhite);
-        setRate(2);
+        setRate(0.2);
         setPieceUrl(getImageURL(isWhite));
         possibleMoves = new ArrayList<>();
     }

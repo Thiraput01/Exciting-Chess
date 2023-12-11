@@ -78,11 +78,13 @@ public class GameEndScreen extends StackPane {
                     @Override
                     public void run() {
                         RenderableHolder.clickButton.play();
-                        toMainScreen(gc);
+                        StartScreen.toMainScreen(gc);
+                        //toMainScreen(gc);
                         GameLogic.resetInstance();
                     }
                 });
-                toMainScreen(gc);
+                StartScreen.toMainScreen(gc);
+                //toMainScreen(gc);
             }
         });
 

@@ -1,7 +1,9 @@
 package ChessPiece;
 
+import Drawing.DescriptionPane;
 import GameLogic.GameLogic;
 import GameLogic.GameUtil;
+import javafx.scene.paint.Color;
 import sharedObject.RenderableHolder;
 
 import java.util.ArrayList;
@@ -130,6 +132,7 @@ public abstract class ChessPiece implements Movable {
             if (GameLogic.getInstance().getChessPieceAt(x, y) == null) { //moving normally
                 GameLogic.getInstance().setChessPieceAt(getPosX(), getPosY(), null);
                 RenderableHolder.moveChess.play();
+                DescriptionPane.setColor(Color.BLACK);
                 setPosY(y);
                 setPosX(x);
                 GameLogic.getInstance().setChessPieceAt(getPosX(), getPosY(), this);
@@ -139,6 +142,7 @@ public abstract class ChessPiece implements Movable {
                 if (GameUtil.attack(current, GameLogic.getInstance().getChessPieceAt(x, y), x, y)) {
                     // successfully attacked
                     RenderableHolder.captureChess.play();
+                    DescriptionPane.setColor(Color.BLACK);
                     GameLogic.getInstance().setChessPieceAt(getPosX(), getPosY(), null);
                     setPosY(y);
                     setPosX(x);
@@ -146,6 +150,7 @@ public abstract class ChessPiece implements Movable {
                 } else {
                     // failed to attack, killed
                     RenderableHolder.captureFailed.play();
+                    DescriptionPane.setColor(Color.RED);
                     GameLogic.getInstance().setChessPieceAt(oldX, oldY, null);
                     setPosX(-10);  // Restore the original X position
                     setPosY(-10);  // Restore the original Y position
