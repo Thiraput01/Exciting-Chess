@@ -15,7 +15,8 @@ public class Queen extends ChessPiece implements Movable {
 
     public boolean isValidMove(int toX, int toY) {
         if (!GameUtil.inRangeOfBoard(toX, toY)) return false;
-        if (GameLogic.getInstance().getChessPieceAt(toX,toY)!=null && GameLogic.getInstance().getChessPieceAt(toX,toY).isWhite()==isWhite()) return false;
+        if (GameLogic.getInstance().getChessPieceAt(toX, toY) != null && GameLogic.getInstance().getChessPieceAt(toX, toY).isWhite() == isWhite())
+            return false;
         if (toX == getPosX() && toY == getPosY()) return false;
         return toX == getPosX() || toY == getPosY() || Math.abs(toX - getPosX()) == Math.abs(toY - getPosY());
     }

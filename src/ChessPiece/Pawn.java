@@ -7,23 +7,26 @@ import java.util.ArrayList;
 
 public class Pawn extends ChessPiece implements Movable {
     private boolean notMoved;
+
     public Pawn(int x, int y, boolean isWhite) {
         super(x, y, isWhite);
         setRate(0.2);
         setPieceUrl(getImageURL(isWhite));
         possibleMoves = new ArrayList<>();
-       notMoved=true;
+        notMoved = true;
     }
 
     public boolean isValidMove(int toX, int toY) {
         if (!GameUtil.inRangeOfBoard(toX, toY)) return false;
-        if (GameLogic.getInstance().getChessPieceAt(toX,toY)!=null && GameLogic.getInstance().getChessPieceAt(toX,toY).isWhite()==isWhite()) return false;
+        if (GameLogic.getInstance().getChessPieceAt(toX, toY) != null && GameLogic.getInstance().getChessPieceAt(toX, toY).isWhite() == isWhite())
+            return false;
         int direction = isWhite() ? 1 : -1;
         if ((toX == getPosX() + 1 || toX == getPosX() - 1) && toY == getPosY() + direction
                 && GameLogic.getInstance().getChessPieceAt(toX, toY) != null
                 && GameLogic.getInstance().getChessPieceAt(toX, toY).isWhite() != isWhite())
             return true; // attacking diagonally upward
-        if (notMoved) return (GameLogic.getInstance().getChessPieceAt(toX, toY) == null) && (toX==getPosX()) && (toY==getPosY()+direction || toY==getPosY()+2*direction);
+        if (notMoved)
+            return (GameLogic.getInstance().getChessPieceAt(toX, toY) == null) && (toX == getPosX()) && (toY == getPosY() + direction || toY == getPosY() + 2 * direction);
         return (GameLogic.getInstance().getChessPieceAt(toX, toY) == null) && (toX == getPosX()) && (toY == getPosY() + direction); //moving normally
     }
 
@@ -41,18 +44,15 @@ public class Pawn extends ChessPiece implements Movable {
         }
     }
 
-    public boolean isNotMoved() {
-        return notMoved;
-    }
-
     public void setNotMoved(boolean notMoved) {
         this.notMoved = notMoved;
     }
-    public void promote(){
-        int xPos=getPosX();
-        int yPos=getPosY();
-        boolean team =isWhite();
-        GameLogic.getInstance().setChessPieceAt(xPos,yPos,new Queen(xPos,yPos,team));
+
+    public void promote() {
+        int xPos = getPosX();
+        int yPos = getPosY();
+        boolean team = isWhite();
+        GameLogic.getInstance().setChessPieceAt(xPos, yPos, new Queen(xPos, yPos, team));
         setPosX(-10);
         setPosY(-10);
     }

@@ -25,22 +25,4 @@ public class ChessPosition {
         this.y = y;
     }
 
-    public boolean equal(ChessPosition other) {
-        return other.getX() == getX() && other.getY() == getY();
-    }
-
-    public void reverse() {
-        this.x = this.x * -1;
-        this.y = this.y * -1;
-    }
-
-    public void normalizedPosition() {
-        if (this.x > 0) this.x = x % 8;
-        if (this.y > 0) this.y = y % 8;
-        if (this.x < 0) this.x += 8;
-        if (this.y < 0) this.y += 8;
-
-    }
-
-
 }

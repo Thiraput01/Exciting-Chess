@@ -55,8 +55,6 @@ public class GamePane extends BorderPane implements IRenderable {
     @Override
     public void draw(GraphicsContext gc) {
         GameLogic.getInstance();
-        //drawTimerBar(gc);
-        //drawTimer(gc);
     }
 
     @Override
@@ -109,18 +107,6 @@ public class GamePane extends BorderPane implements IRenderable {
         gc.fillRect(15, 320, 32, blackBarHeight);
     }
 
-    /*private void drawTimer(GraphicsContext gc){
-        gc.setFill(Color.BLACK);
-        gc.setFont(Font.font("Impact", FontWeight.MEDIUM, 40));
-
-        String timeLeftBlack = GameLogic.getInstance().getTime_left_black();
-        String timeLeftWhite = GameLogic.getInstance().getTime_left_white();
-        //White Side
-        gc.fillText(timeLeftWhite, 228, 760);
-        //Black Side
-        gc.fillText(timeLeftBlack, 588, 760);
-    }*/
-
     private void drawGameTime(GraphicsContext gc) {
         gc.setFont(Font.font("Bauhaus 93", FontWeight.MEDIUM, 40));
         gc.setFill(Color.web("F3E5AB"));
@@ -140,13 +126,6 @@ public class GamePane extends BorderPane implements IRenderable {
             }
         };
         animation.start();
-    }
-
-    public void resetGame() {
-        GameLogic.getInstance().initializedBoard();
-        GameLogic.getInstance().setTime_left_black(300);
-        GameLogic.getInstance().setTime_left_black(300);
-        GameLogic.setCurrent_game_time(0);
     }
 }
 

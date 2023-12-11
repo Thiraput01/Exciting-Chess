@@ -174,38 +174,6 @@ public class ChessboardPane extends Canvas {
         }
     }
 
-    public void removePieceAt(int posX, int posY) {
-        int x = posX * CELL_SIZE;
-        int y = posY * CELL_SIZE;
-        getGraphicsContext2D().clearRect(x, y, CELL_SIZE, CELL_SIZE);
-    }
-
-    public void setImageAt(ChessPiece piece, int posX, int posY) {
-        int x = posX * CELL_SIZE + OFFSET;
-        int y = posY * CELL_SIZE + OFFSET;
-        GraphicsContext gc = getGraphicsContext2D();
-        Image pieceImage = getPieceImage(piece);
-        gc.drawImage(pieceImage, x, y, PIECE_SIZE, PIECE_SIZE);
-    }
-
-    public void resetTiles() {
-        GraphicsContext gc = getGraphicsContext2D();
-        gc.clearRect(0, 0, getWidth(), getHeight()); // Clear the canvas
-
-        // Draw the chessboard squares
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                int posX = i * CELL_SIZE;
-                int posY = j * CELL_SIZE;
-                if ((i + j) % 2 == 0) {
-                    drawRectLightBrown(gc, posX, posY);
-                } else {
-                    drawRectBrown(gc, posX, posY);
-                }
-            }
-        }
-    }
-
     private void highlightMoves(GraphicsContext gc, int posX, int posY) {
         gc.setFill(Color.LIGHTGREEN);
         int x = posX * CELL_SIZE;

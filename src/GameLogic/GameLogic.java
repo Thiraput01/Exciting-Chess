@@ -135,15 +135,6 @@ public class GameLogic {
         return whiteWins || blackWins;
     }
 
-
-    public String getTime_left_white() {
-        return time_left_white / 60 + " : " + time_left_white % 60;
-    }
-
-    public String getTime_left_black() {
-        return time_left_black / 60 + " : " + time_left_black % 60;
-    }
-
     public long getTimeLeftWhite() {
         return time_left_white;
     }
@@ -170,27 +161,10 @@ public class GameLogic {
             if (currentPlayer) time_left_white--;
             else time_left_black--;
         }
-
-    }
-
-    public ArrayList<ArrayList<ChessPiece>> getBoard() {
-        return board;
     }
 
     public static void setCurrent_game_time(long time) {
         currentTime = time;
-    }
-
-    public long getCurrent_game_time() {
-        return gameTime;
-    }
-
-    public long getTimeLeft(boolean isWhite) {
-        return isWhite ? time_left_white : time_left_black;
-    }
-
-    public static void setCurrentTime(long currentTime) {
-        GameLogic.currentTime = currentTime;
     }
 
     public static String getStringGameTime() {

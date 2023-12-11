@@ -23,7 +23,8 @@ import javafx.scene.text.FontWeight;
 public class StartScreen extends BorderPane {
 
     private static Scene scene;
-    public StartScreen(){
+
+    public StartScreen() {
         super();
         setPrefSize(1366, 768);
 
@@ -123,13 +124,12 @@ public class StartScreen extends BorderPane {
     }
 
 
-    public static void toMainScreen(GraphicsContext gc){
+    public static void toMainScreen(GraphicsContext gc) {
         MainScreenPane mainScreenPane = new MainScreenPane();
         Group group = new Group(mainScreenPane);
         scene = new Scene(group);
         RenderableHolder.getInstance().clear();
         GameLogic.resetInstance();
-        //TODO GameInstance.getInstance().start();
         Main.stage.setScene(scene);
 
         mainScreenPane.requestFocus();
@@ -140,7 +140,6 @@ public class StartScreen extends BorderPane {
                 GameLogic.getInstance().updateGameTime();
                 RenderableHolder.getInstance().update();
                 if (GameLogic.getInstance().isGameEnd()) {
-                    //System.out.println("Game should end here");
                     this.stop();
                     GameEndScreen gameEndScreen = new GameEndScreen();
                     Group group1 = new Group(gameEndScreen);

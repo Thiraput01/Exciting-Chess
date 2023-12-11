@@ -24,18 +24,4 @@ public class MainScreenPane extends HBox {
         getChildren().add(gamePane);
         getChildren().add(descriptionPane);
     }
-
-    public static GamePane getGamePane() {
-        if (gamePane == null) {
-            gamePane = new GamePane();
-        }
-        return gamePane;
-    }
-
-    public static DescriptionPane getDescriptionPane() {
-        if (descriptionPane == null) {
-            descriptionPane = new DescriptionPane();
-        }
-        return descriptionPane;
-    }
 }

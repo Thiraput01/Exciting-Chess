@@ -62,15 +62,6 @@ public abstract class ChessPiece implements Movable {
         this.pieceUrl = pieceUrl;
     }
 
-    /*private void addEventHandler(){
-        setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                setCurrentAllPossibleMoves();
-            }
-        });
-    }*/
-
     public void setPosX(int posX) {
         this.posX = posX;
     }
@@ -136,15 +127,15 @@ public abstract class ChessPiece implements Movable {
                 setPosY(y);
                 setPosX(x);
                 GameLogic.getInstance().setChessPieceAt(getPosX(), getPosY(), this);
-                String descriptionText= current + "\nmoved from (" + oldX + "," + oldY + ")\nto (" + getPosX() + "," + getPosY()+").\n";
-                if (this instanceof Pawn){
-                    ChessPosition tmp= new ChessPosition(getPosX(),getPosY());
-                    if (isWhite() && getPosY()==7){
+                String descriptionText = current + "\nmoved from (" + oldX + "," + oldY + ")\nto (" + getPosX() + "," + getPosY() + ").\n";
+                if (this instanceof Pawn) {
+                    ChessPosition tmp = new ChessPosition(getPosX(), getPosY());
+                    if (isWhite() && getPosY() == 7) {
                         ((Pawn) this).promote();
-                        descriptionText+="A white pawn is\npromoted to Queen\nat ("+tmp.getX()+","+tmp.getY()+").\n";
-                    } else if (!isWhite() && getPosY()==0) {
+                        descriptionText += "A white pawn is\npromoted to Queen\nat (" + tmp.getX() + "," + tmp.getY() + ").\n";
+                    } else if (!isWhite() && getPosY() == 0) {
                         ((Pawn) this).promote();
-                        descriptionText+="A black pawn is\npromoted to Queen\nat ("+tmp.getX()+","+tmp.getY()+").\n";
+                        descriptionText += "A black pawn is\npromoted to Queen\nat (" + tmp.getX() + "," + tmp.getY() + ").\n";
                     }
                 }
                 GameLogic.getInstance().setCurrentDesc(descriptionText);
@@ -157,15 +148,15 @@ public abstract class ChessPiece implements Movable {
                     GameLogic.getInstance().setChessPieceAt(getPosX(), getPosY(), null);
                     setPosY(y);
                     setPosX(x);
-                    String descriptionText = current + "\nfrom (" + oldX + "," + oldY + ")\nKilled an enemy at \n(" + getPosX() + "," + getPosY()+").\n";
-                    if (this instanceof Pawn){
-                        ChessPosition tmp= new ChessPosition(getPosX(),getPosY());
-                        if (isWhite() && getPosY()==7){
+                    String descriptionText = current + "\nfrom (" + oldX + "," + oldY + ")\nKilled an enemy at \n(" + getPosX() + "," + getPosY() + ").\n";
+                    if (this instanceof Pawn) {
+                        ChessPosition tmp = new ChessPosition(getPosX(), getPosY());
+                        if (isWhite() && getPosY() == 7) {
                             ((Pawn) this).promote();
-                            descriptionText+="A white pawn is\npromoted to Queen\nat ("+tmp.getX()+","+tmp.getY()+").\n";
-                        } else if (!isWhite() && getPosY()==0) {
+                            descriptionText += "A white pawn is\npromoted to Queen\nat (" + tmp.getX() + "," + tmp.getY() + ").\n";
+                        } else if (!isWhite() && getPosY() == 0) {
                             ((Pawn) this).promote();
-                            descriptionText+="A black pawn is\npromoted to Queen\nat ("+tmp.getX()+","+tmp.getY()+").\n";
+                            descriptionText += "A black pawn is\npromoted to Queen\nat (" + tmp.getX() + "," + tmp.getY() + ").\n";
                         }
                     }
                     GameLogic.getInstance().setCurrentDesc(descriptionText);
@@ -184,15 +175,6 @@ public abstract class ChessPiece implements Movable {
         }
         return false;
     }
-
-
-
-    /*this.setOnMouseClicked(new EventHandler<MouseEvent>() {
-        @Override
-        public void handle(MouseEvent mouseEvent) {
-            System.exit(0);
-        }
-    });*/
 
     public ArrayList<ChessPosition> getPossibleMoves() {
         setCurrentAllPossibleMoves();

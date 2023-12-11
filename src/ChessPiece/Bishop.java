@@ -15,7 +15,8 @@ public class Bishop extends ChessPiece implements Movable {
 
     public boolean isValidMove(int toX, int toY) {
         if (!GameUtil.inRangeOfBoard(toX, toY)) return false;
-        if (GameLogic.getInstance().getChessPieceAt(toX,toY)!=null && GameLogic.getInstance().getChessPieceAt(toX,toY).isWhite()==isWhite()) return false;
+        if (GameLogic.getInstance().getChessPieceAt(toX, toY) != null && GameLogic.getInstance().getChessPieceAt(toX, toY).isWhite() == isWhite())
+            return false;
         return Math.abs(toX - getPosX()) != 0 && Math.abs(toX - getPosX()) == Math.abs(toY - getPosY());
     }
 
@@ -27,7 +28,7 @@ public class Bishop extends ChessPiece implements Movable {
         possibleMoves.clear();
         for (int i = 0; i < 8; i++) {
             for (int e = 0; e < 8; e++) {
-                if (isValidMove(i, e) && GameUtil.isClearPath(getPosX(),getPosY(),i,e,this))
+                if (isValidMove(i, e) && GameUtil.isClearPath(getPosX(), getPosY(), i, e, this))
                     possibleMoves.add(new ChessPosition(i, e));
             }
         }

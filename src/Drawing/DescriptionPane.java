@@ -26,6 +26,7 @@ public class DescriptionPane extends BorderPane {
     private Scene scene;
 
     private static Text descriptionText;
+
     public DescriptionPane() {
         super();
         setPrefSize(545, 768);
@@ -100,7 +101,7 @@ public class DescriptionPane extends BorderPane {
         setCenter(descriptionText);
     }
 
-    public void toStartScreen(){
+    public void toStartScreen() {
         RenderableHolder.clickButton.play();
         StartScreen startScreen = new StartScreen();
         Group group = new Group(startScreen);
@@ -111,7 +112,7 @@ public class DescriptionPane extends BorderPane {
         startScreen.requestFocus();
     }
 
-    public static void updateDescriptionText(){
+    public static void updateDescriptionText() {
         descriptionText.setFill(color);
         descriptionText.setText(GameLogic.getInstance().getCurrentDesc());
     }

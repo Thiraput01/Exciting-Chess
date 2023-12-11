@@ -1,12 +1,9 @@
 package Drawing;
 
 import GameLogic.GameLogic;
-import Main.Main;
-import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -79,12 +76,10 @@ public class GameEndScreen extends StackPane {
                     public void run() {
                         RenderableHolder.clickButton.play();
                         StartScreen.toMainScreen(gc);
-                        //toMainScreen(gc);
                         GameLogic.resetInstance();
                     }
                 });
                 StartScreen.toMainScreen(gc);
-                //toMainScreen(gc);
             }
         });
 
@@ -111,29 +106,5 @@ public class GameEndScreen extends StackPane {
                 System.exit(0);
             }
         });
-    }
-
-    public void toMainScreen(GraphicsContext gc) {
-        MainScreenPane mainScreenPane = new MainScreenPane();
-        Group group = new Group(mainScreenPane);
-        scene = new Scene(group);
-        RenderableHolder.getInstance().clear();
-        GameLogic.resetInstance();
-        //TODO GameInstance.getInstance().start();
-        Main.stage.setScene(scene);
-
-        mainScreenPane.requestFocus();
-
-        AnimationTimer animation = new AnimationTimer() {
-            public void handle(long now) {
-                GameLogic.setCurrent_game_time(now);
-                GameLogic.getInstance().updateGameTime();
-                RenderableHolder.getInstance().update();
-                if (GameLogic.getInstance().isGameEnd()) {
-                    this.stop();
-                }
-            }
-        };
-        animation.start();
     }
 }

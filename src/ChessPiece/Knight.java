@@ -16,7 +16,8 @@ public class Knight extends ChessPiece implements Movable {
 
     public boolean isValidMove(int toX, int toY) {
         if (!GameUtil.inRangeOfBoard(toX, toY)) return false;
-        if (GameLogic.getInstance().getChessPieceAt(toX,toY)!=null && GameLogic.getInstance().getChessPieceAt(toX,toY).isWhite()==isWhite()) return false;
+        if (GameLogic.getInstance().getChessPieceAt(toX, toY) != null && GameLogic.getInstance().getChessPieceAt(toX, toY).isWhite() == isWhite())
+            return false;
         if (Math.abs(toX - getPosX()) == 1) {
             return Math.abs(toY - getPosY()) == 2;
         } else if (Math.abs(toX - getPosX()) == 2) {
@@ -33,7 +34,7 @@ public class Knight extends ChessPiece implements Movable {
         possibleMoves.clear();
         for (int i = 0; i < 8; i++) {
             for (int e = 0; e < 8; e++) {
-                if (isValidMove(i, e) && GameLogic.getInstance().getChessPieceAt(i, e) == null || (isValidMove(i,e) && GameLogic.getInstance().getChessPieceAt(i, e) != null && GameLogic.getInstance().getChessPieceAt(i, e).isWhite() != isWhite()))
+                if (isValidMove(i, e) && GameLogic.getInstance().getChessPieceAt(i, e) == null || (isValidMove(i, e) && GameLogic.getInstance().getChessPieceAt(i, e) != null && GameLogic.getInstance().getChessPieceAt(i, e).isWhite() != isWhite()))
                     possibleMoves.add(new ChessPosition(i, e));
             }
         }

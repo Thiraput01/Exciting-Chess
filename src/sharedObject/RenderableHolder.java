@@ -95,8 +95,4 @@ public class RenderableHolder {
         }
     }
 
-    public List<IRenderable> getEntities() {
-        return entities;
-    }
-
 }
