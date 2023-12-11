@@ -48,4 +48,12 @@ public class Pawn extends ChessPiece implements Movable {
     public void setNotMoved(boolean notMoved) {
         this.notMoved = notMoved;
     }
+    public void promote(){
+        int xPos=getPosX();
+        int yPos=getPosY();
+        boolean team =isWhite();
+        GameLogic.getInstance().setChessPieceAt(xPos,yPos,new Queen(xPos,yPos,team));
+        setPosX(-10);
+        setPosY(-10);
+    }
 }

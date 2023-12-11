@@ -136,7 +136,18 @@ public abstract class ChessPiece implements Movable {
                 setPosY(y);
                 setPosX(x);
                 GameLogic.getInstance().setChessPieceAt(getPosX(), getPosY(), this);
-                GameLogic.getInstance().setCurrentDesc(current + "\nmoved from (" + oldX + "," + oldY + ")\nto (" + getPosX() + "," + getPosY()+")");
+                String descriptionText= current + "\nmoved from (" + oldX + "," + oldY + ")\nto (" + getPosX() + "," + getPosY()+").\n";
+                if (this instanceof Pawn){
+                    ChessPosition tmp= new ChessPosition(getPosX(),getPosY());
+                    if (isWhite() && getPosY()==7){
+                        ((Pawn) this).promote();
+                        descriptionText+="A white pawn is\npromoted to Queen\nat ("+tmp.getX()+","+tmp.getY()+").\n";
+                    } else if (!isWhite() && getPosY()==0) {
+                        ((Pawn) this).promote();
+                        descriptionText+="A black pawn is\npromoted to Queen\nat ("+tmp.getX()+","+tmp.getY()+").\n";
+                    }
+                }
+                GameLogic.getInstance().setCurrentDesc(descriptionText);
             } else {
                 // attack
                 if (GameUtil.attack(current, GameLogic.getInstance().getChessPieceAt(x, y), x, y)) {
@@ -146,7 +157,18 @@ public abstract class ChessPiece implements Movable {
                     GameLogic.getInstance().setChessPieceAt(getPosX(), getPosY(), null);
                     setPosY(y);
                     setPosX(x);
-                    GameLogic.getInstance().setCurrentDesc(current + "\nfrom (" + oldX + "," + oldY + ")\nKilled an enemy at \n(" + getPosX() + "," + getPosY()+")");
+                    String descriptionText = current + "\nfrom (" + oldX + "," + oldY + ")\nKilled an enemy at \n(" + getPosX() + "," + getPosY()+").\n";
+                    if (this instanceof Pawn){
+                        ChessPosition tmp= new ChessPosition(getPosX(),getPosY());
+                        if (isWhite() && getPosY()==7){
+                            ((Pawn) this).promote();
+                            descriptionText+="A white pawn is\npromoted to Queen\nat ("+tmp.getX()+","+tmp.getY()+").\n";
+                        } else if (!isWhite() && getPosY()==0) {
+                            ((Pawn) this).promote();
+                            descriptionText+="A black pawn is\npromoted to Queen\nat ("+tmp.getX()+","+tmp.getY()+").\n";
+                        }
+                    }
+                    GameLogic.getInstance().setCurrentDesc(descriptionText);
                 } else {
                     // failed to attack, killed
                     RenderableHolder.captureFailed.play();
