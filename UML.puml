@@ -1,0 +1,140 @@
+@startuml
+class ChessPiece.Bishop {
++ <<Create>> Bishop(int,int,boolean)
++ boolean isValidMove(int,int)
+- String getImageURL(boolean)
++ void setCurrentAllPossibleMoves()
+}
+class Main.Main {
++ {static} Stage stage
++ void start(Stage)
++ {static} void main(String[])
+}
+class ChessPiece.Pawn {
+- boolean notMoved
++ <<Create>> Pawn(int,int,boolean)
++ boolean isValidMove(int,int)
+- String getImageURL(boolean)
++ void setCurrentAllPossibleMoves()
++ void setNotMoved(boolean)
++ void promote()
+}
+class ChessPiece.Knight {
++ <<Create>> Knight(int,int,boolean)
++ boolean isValidMove(int,int)
+- String getImageURL(boolean)
++ void setCurrentAllPossibleMoves()
+}
+abstract class ChessPiece.ChessPiece {
+- int posX
+- int posY
+- double rate
+- String pieceUrl
+- boolean whiteTeam
+# ArrayList<ChessPosition> possibleMoves
++ <<Create>> ChessPiece(int,int,boolean)
++ boolean isWhite()
++ void setTeam(boolean)
++ double getRate()
++ void setRate(double)
++ String getPieceType()
++ void setPieceUrl(String)
++ void setPosX(int)
++ int getPosX()
++ void setPosY(int)
++ int getPosY()
++ String toString()
++ {abstract}void setCurrentAllPossibleMoves()
++ boolean move(int,int)
++ ArrayList<ChessPosition> getPossibleMoves()
+}
+class ChessPiece.ChessPosition {
+- int x
+- int y
++ <<Create>> ChessPosition(int,int)
++ int getX()
++ void setX(int)
++ int getY()
++ void setY(int)
+}
+class ChessPiece.Rook {
++ <<Create>> Rook(int,int,boolean)
++ boolean isValidMove(int,int)
+- String getImageURL(boolean)
++ void setCurrentAllPossibleMoves()
+}
+class ChessPiece.King {
++ <<Create>> King(int,int,boolean)
+- String getImageURL(boolean)
++ boolean isValidMove(int,int)
++ void setCurrentAllPossibleMoves()
+}
+class GameLogic.GameUtil {
++ {static} boolean successAttack(double,double)
++ {static} boolean inRangeOfBoard(int,int)
++ {static} boolean attack(ChessPiece,ChessPiece,int,int)
++ {static} boolean isClearPath(int,int,int,int,ChessPiece)
+}
+class ChessPiece.Queen {
++ <<Create>> Queen(int,int,boolean)
++ boolean isValidMove(int,int)
+- String getImageURL(boolean)
++ void setCurrentAllPossibleMoves()
+}
+interface ChessPiece.Movable {
++ boolean isValidMove(int,int)
+}
+class GameLogic.GameLogic {
+- ArrayList<ArrayList<ChessPiece>> board
+- boolean currentPlayer
+- {static} long lastTimeTriggered
+# {static} long currentTime
+- {static} int gameTime
+- long time_left_white
+- long time_left_black
+- {static} GameLogic instance
+- boolean isHighlighting
+- ChessPiece currentClickingPiece
+- {static} boolean whiteWon
+- String currentDesc
++ <<Create>> GameLogic()
++ void initializedBoard()
++ {static} GameLogic getInstance()
++ {static} void resetInstance()
++ void nextPlayer()
++ ChessPiece getChessPieceAt(int,int)
++ void setChessPieceAt(int,int,ChessPiece)
++ boolean isGameEnd()
++ long getTimeLeftWhite()
++ long getTimeLeftBlack()
++ void setTime_left_white(long)
++ void setTime_left_black(long)
++ void updateGameTime()
++ {static} void setCurrent_game_time(long)
++ {static} String getStringGameTime()
++ boolean isHighlighting()
++ void setHighlighting(boolean)
++ void setCurrentClickingPiece(ChessPiece)
++ ChessPiece getCurrentClickingPiece()
++ boolean getCurrentPlayer()
++ String getCurrentDesc()
++ void setCurrentDesc(String)
++ {static} boolean isWhiteWon()
+}
+
+
+ChessPiece.Movable <|.. ChessPiece.Bishop
+ChessPiece.ChessPiece <|-- ChessPiece.Bishop
+javafx.application.Application <|-- Main.Main
+ChessPiece.Movable <|.. ChessPiece.Pawn
+ChessPiece.ChessPiece <|-- ChessPiece.Pawn
+ChessPiece.Movable <|.. ChessPiece.Knight
+ChessPiece.ChessPiece <|-- ChessPiece.Knight
+ChessPiece.Movable <|.. ChessPiece.ChessPiece
+ChessPiece.Movable <|.. ChessPiece.Rook
+ChessPiece.ChessPiece <|-- ChessPiece.Rook
+ChessPiece.Movable <|.. ChessPiece.King
+ChessPiece.ChessPiece <|-- ChessPiece.King
+ChessPiece.Movable <|.. ChessPiece.Queen
+ChessPiece.ChessPiece <|-- ChessPiece.Queen
+@enduml
