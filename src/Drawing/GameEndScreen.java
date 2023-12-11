@@ -36,7 +36,7 @@ public class GameEndScreen extends StackPane {
         vBox.setAlignment(Pos.CENTER);
 
         boolean whiteWon = GameLogic.isWhiteWon();
-        String endGameMessage = "Congratulation!\n";
+        String endGameMessage = "CONGRATULATION!\n";
         endGameMessage += whiteWon ? "WHITE TEAM WON!" : "BLACK TEAM WON!";
 
         Text endGameMessageText = new Text(endGameMessage);
