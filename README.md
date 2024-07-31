@@ -17,13 +17,13 @@ Welcome to the Exciting Chess project! This is a chess game implemented in Java,
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/Thiraput01/Exciting-Chess-.git
+    git clone https://github.com/Thiraput01/Exciting-Chess.git
     ```
 
 2. **Navigate to the project directory:**
 
     ```bash
-    cd Exciting-Chess-
+    cd Exciting-Chess
     ```
 
 ## Usage
@@ -35,7 +35,7 @@ To play the chess game, you need to run the JAR file. Follow the steps below:
 2. **Navigate to the directory where the `Progmeth_project.jar` file is located:**
 
     ```bash
-    cd path/to/Exciting-Chess-
+    cd path/to/Exciting-Chess
     ```
 
 3. **Run the JAR file using the following command:**
