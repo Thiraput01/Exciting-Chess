@@ -1,4 +1,4 @@
-# Exciting Chess
+# Exciting Chess ♛♟️✨
 
 Welcome to the Exciting Chess project! This is a chess game implemented in Java, packaged into a JAR file for easy execution. Follow the instructions below to get started.
 
